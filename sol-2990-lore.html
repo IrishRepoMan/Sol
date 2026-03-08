@@ -1137,6 +1137,7 @@ const CONTENT_MAP={
   'institutions':()=>politics(),
   'hist-expansion': ()=>histExpansion(),
   'hist-ai-crisis':  ()=>histAICrisis(),
+  'hist-imperial':   ()=>histImperial(),
 };
 
 let _activeNodeId=null;
@@ -2161,6 +2162,110 @@ The Belt Council Constitution (2304) formalised Belt governance just as the ligh
   h+=`<div style="margin-top:20px;padding:14px 16px;background:rgba(200,151,58,0.07);border-left:2px solid rgba(200,151,58,0.35);border-radius:4px">
     <div style="font-size:11px;letter-spacing:.1em;opacity:.5;text-transform:uppercase;margin-bottom:6px">Population milestone</div>
     <div style="font-size:13px;line-height:1.6;opacity:.75">At the close of 2100, roughly 15 billion humans lived on or near Earth. By 2400, half a trillion people called the solar system home. The rate of growth was not linear \u2014 it accelerated in pulses tied to technological breakthroughs, slowed after the AI Crisis, then exploded once lightlane transit made mass migration practical.</div>
+  </div>`;
+
+  return h;
+}
+
+
+function histImperial(){
+  let h='<div class="sec-header">The Imperial Age (2400\u20132700)</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">Three centuries in which the solar system\u2019s political map solidified into the pattern still visible in 2990. A human diaspora became a civilisation. And beneath the surface of every major power, the seeds of the Solar War were quietly planted.</div>';
+
+  const PHASES=[
+    {
+      id:'imp-outer',
+      title:'The Liberty Expedition and the Birth of Empire (2292\u20132445)',
+      col:'#b87ac8',
+      sub:'Dr. Eliza Kantaro leads 8,200 colonists to Saturn. Nazari declares an empire.',
+      body:`The Outer System Empire traces its origin to a single act of political defection. In 2292, Dr. Eliza Kantaro \u2014 a senior administrator in Jupiter\u2019s colonial programme \u2014 led 8,200 disillusioned Jovian colonists to Saturn aboard a small fleet of modified transport vessels. The journey was brutal. Nearly 300 died in the first winter. The survivors built something that was not Jovian, not Terran, not Martian: a society organised entirely around personal loyalty, familial responsibility, and the shared necessity of survival at the edge of the solar system.
+<br><br>
+Kantaro\u2019s Familial Responsibility System \u2014 which assigned resource domains to trusted lieutenants in exchange for direct personal allegiance \u2014 was born of pragmatism. There was no bureaucracy to spare. You trusted the people you knew, gave them territory to manage, and held them accountable with your life and theirs. The system worked. When Titan\u2019s hydrocarbon deposits were confirmed commercially viable in 2312, it provided the economic foundation the settlement needed. By the time Kantaro personally selected her successor in 2344, the Saturn settlements had become something that could plausibly call itself a state.
+<br><br>
+Her successor, Chen Wei, expanded to Uranus (2353) and Neptune (2372). The Triton Declaration (2381) formally unified the three systems under a single cooperative framework. When Jupiter\u2019s Economic Alliance launched a military expedition to Uranus in 2422, expecting easy capitulation from frontier settlers, they found instead that Esteban Nazari \u2014 Chen\u2019s own chosen successor \u2014 had spent two decades preparing hidden defensive installations throughout the Uranian system. The Battle of Oberon and subsequent engagements convinced Jupiter that the military cost outweighed the prize. The Treaty of Oberon (2425) formally recognised outer system independence.
+<br><br>
+Nazari\u2019s \u201cAddress to the Ascendant Worlds\u201d on Titan in 2429 declared the Sovereign Empire of the Outer Systems. The First Consortium Convention of 2445 formalised 23 great families as Imperial Consortiums, each holding exclusive resource rights across all three systems in exchange for direct allegiance to the throne. This was Kantaro\u2019s Familial Responsibility System scaled to interplanetary scope \u2014 and it created the political architecture the Empire still runs on in 2990.`
+    },
+    {
+      id:'imp-jovian',
+      title:'Jupiter Ascendant (2400\u20132600)',
+      col:'#7cc8c0',
+      sub:'Helium-3 becomes the energy currency of the solar system. Jupiter controls it.',
+      body:`Jupiter\u2019s political dominance during the Imperial Age rested on a single fact: the gas giant\u2019s atmosphere contained more helium-3 than every other known source combined. Atmospheric skimming at industrial scale began in the 2430s. Within two decades, Jupiter was supplying the majority of fusion fuel for the entire inner system. The economic leverage this created was enormous \u2014 and the Jovian Republic exploited it with sophistication.
+<br><br>
+The Republic\u2019s structure, formalised in the 2400s, was explicitly meritocratic: a tiered citizenship system where access to resources, housing, and political participation depended on demonstrated contribution. In practice this created a highly mobile professional class at its upper tier and a permanently underserved lower tier that lacked the credentials to advance, regardless of ability. This tension between the Republic\u2019s self-image (meritocracy) and its reality (credentialism) would persist unresolved into 2990.
+<br><br>
+Jupiter\u2019s failed Uranian campaign (2422\u20132425) was a political shock. The Republic had grown accustomed to its economic leverage translating to political dominance. Finding that the outer settlers were both willing and able to resist militarily forced a recalibration. Jupiter pivoted to soft power: economic agreements, trade terms, diplomatic presence. It remains the strategy in 2990 \u2014 Jupiter prefers to make resistance economically irrational rather than militarily costly.
+<br><br>
+By 2550, Ganymede City had become the largest human settlement outside the inner system, a cosmopolitan hub where every faction maintained a significant diplomatic and commercial presence. Its architecture, deliberately designed to awe \u2014 vast pressurised domes, grand civic plazas, the famous Galileo Promenade \u2014 was as much political statement as functional design.`
+    },
+    {
+      id:'imp-inner',
+      title:'Inner System Consolidation (2400\u20132650)',
+      col:'#4a9fd4',
+      sub:'Terra withdraws inward. Mars becomes the breadbasket. Venus anchors Terra\u2019s influence.',
+      body:`The inner system during the Imperial Age was characterised by quiet consolidation rather than dramatic expansion. Terra\u2019s Reclamation Accords had already set Earth on the path to rewilding; by the 2400s this was an established fact. Earth\u2019s surface population stabilised around 5 billion in efficient arcologies while the orbital habitat complexes grew to house hundreds of billions. The symbolic weight of Earth \u2014 as origin, heritage site, and cultural reference point \u2014 remained enormous even as its political and economic centrality declined.
+<br><br>
+Mars completed the transformation from survival colony to regional power during this period. The great dome-building programmes of the 2380s\u20132500s brought progressively larger areas under controlled atmosphere, and Mars\u2019s agricultural output shifted from subsistence to surplus to export dominance. By 2600 the Mars Agricultural Cooperative was supplying a substantial fraction of the inner system\u2019s food supply. This dependency would become a significant political lever in the Solar War.
+<br><br>
+Venus remained in Terra\u2019s orbit \u2014 culturally, economically, and politically. The cloud-city platform networks expanded through the 2400s into a substantial civilisation in their own right, but Venus never pursued independence. The Resource Authority\u2019s preferential trade terms with Terra and genuine cultural continuity ensured loyalty. Venus\u2019s orbital rings \u2014 the vast manufacturing platforms in low Venusian orbit \u2014 became some of the most productive heavy industry in the inner system.
+<br><br>
+The Belt, meanwhile, consolidated its political identity. The Confederation\u2019s formal structure, established in the 2300s, matured into a functioning multi-factional government with genuine enforcement capability by the 2400s. Belt culture \u2014 built on mutual obligation, technical pragmatism, and fierce resentment of inner system condescension \u2014 was fully formed by 2500.`
+    },
+    {
+      id:'imp-mercury',
+      title:'Mercury\u2019s Shadow Economy (2267\u20132700)',
+      col:'#e8a040',
+      sub:'The penal colony becomes a world. No one asks how.',
+      body:`Mercury\u2019s history during the Imperial Age is the history of a crime conducted at civilisational scale and concealed through institutional sophistication. What had begun as penal labour in the 22nd century \u2014 Earth offloading its prison population to a hostile environment \u2014 underwent a quiet transformation in 2267. The \u201cIntegrated Population Management Act\u201d officially described itself as a rehabilitation programme. In practice it removed fixed sentences and replaced them with merit-based liberation standards that were deliberately unachievable. No one left.
+<br><br>
+The Security Reclamation Programme of 2278 authorised Mercury forces to \u201creclaim escaped prisoners\u201d from Mercury\u2019s vicinity. This expanded rapidly into covert raids on isolated Belt mining operations, fraudulent employment recruitment in impoverished outer system habitats, and the interception of small transport vessels in poorly patrolled regions. Victims disappeared into Mercury\u2019s restricted zones. Official records showed accidents, piracy, life support failures.
+<br><br>
+By the early 24th century the system was self-sustaining: breeding programmes produced children born into slavery who had never known anything else. By 2700 the concealed population numbered in the hundreds of millions, managed through a six-layer concealment system so sophisticated that even experienced Belt economic analysts \u2014 noticing statistical impossibilities in Mercury\u2019s productivity figures \u2014 could not prove what they suspected.
+<br><br>
+The rest of the solar system saw Mercury\u2019s face: a technically brilliant meritocratic society of extreme-environment specialists, producing genuinely innovative technology in heat management, radiation shielding, and materials science. The Consortium cultivated this image carefully. The technology was real. The labour that produced much of it was not free.`
+    },
+    {
+      id:'imp-tensions',
+      title:'Structural Tensions and the Road to War (2600\u20132700)',
+      col:'#e05c3a',
+      sub:'The solar system was too large, too unequal, and too interdependent to remain at peace.',
+      body:`By 2600 the solar system\u2019s population had reached 1.5 trillion. The lightlane network connected every major settlement. Trade flows crossed every factional boundary. And the political architecture had not been meaningfully redesigned since the Armstrong Treaty (2162) established Martian independence and the AI Limitation Treaty (2110) set the framework for technological governance. A trillion and a half people were living under institutions built for tens of billions.
+<br><br>
+The structural tensions were well understood by contemporary analysts. Jupiter\u2019s helium-3 control gave it leverage it was not shy about using. Mars\u2019s agricultural dominance made every inner system faction dependent on Martian goodwill. The Belt\u2019s lightlane infrastructure position meant that disrupting Belt relations could throttle interplanetary shipping across the entire inner system. The Empire\u2019s exotic materials \u2014 available nowhere else \u2014 gave it pricing power over advanced manufacturing. Each faction had something the others needed, and each used that leverage when it suited them.
+<br><br>
+The hundred years before the Solar War saw: three major lightlane incidents that each came close to armed conflict; two Belt secession movements that ended in economic concessions rather than violence; a sustained Mercury-Jupiter technology dispute that the Solar Concordat struggled to arbitrate; and the quiet beginning of what historians now call the \u201cinfrastructure denial\u201d pattern \u2014 major powers systematically blocking lightlane extensions into underserved Belt and outer system regions to maintain dependency relationships.
+<br><br>
+When the war came, observers in every faction would later claim they had seen it coming. The institutional mechanisms for managing factional competition had been stretched to breaking. All that was needed was a spark.`
+    },
+  ];
+
+  PHASES.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div>
+          <div class="mil-name" style="color:${p.col}">${p.title}</div>
+          <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">${p.sub}</div>
+        </div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none">
+        <div class="fac-sec-text" style="line-height:1.7">${p.body}</div>
+      </div>
+    </div>`;
+  });
+
+  h+=`<div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="padding:14px 16px;background:rgba(184,122,200,0.07);border-left:2px solid rgba(184,122,200,0.35);border-radius:4px">
+      <div style="font-size:11px;letter-spacing:.1em;opacity:.5;text-transform:uppercase;margin-bottom:6px">Key figure</div>
+      <div style="font-size:13px;opacity:.8;font-weight:500">Emperor Esteban Nazari</div>
+      <div style="font-size:12px;opacity:.55;line-height:1.5;margin-top:4px">Declared the Sovereign Empire of the Outer Systems in 2429. The Consortium system he designed remains the Empire\u2019s governing architecture 560 years later.</div>
+    </div>
+    <div style="padding:14px 16px;background:rgba(74,159,212,0.07);border-left:2px solid rgba(74,159,212,0.35);border-radius:4px">
+      <div style="font-size:11px;letter-spacing:.1em;opacity:.5;text-transform:uppercase;margin-bottom:6px">Key figure</div>
+      <div style="font-size:13px;opacity:.8;font-weight:500">Dr. Eliza Kantaro</div>
+      <div style="font-size:12px;opacity:.55;line-height:1.5;margin-top:4px">Led the Liberty Expedition to Saturn in 2292. Her Familial Responsibility System became the template for Imperial governance. Died 2351; revered as the Empire\u2019s true founder.</div>
+    </div>
   </div>`;
 
   return h;
