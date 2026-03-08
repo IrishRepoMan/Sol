@@ -1109,247 +1109,7 @@ function renderSelected(b,drawPos){
     '</div><div class="sel-desc">'+b.desc+'</div>';
 }
 
-const LORE_TREE=[
-  {id:'history',n:'History',icon:'⧗',num:'01',ch:[
-    {id:'hist-expansion',n:'The Expansion Era (2100–2400)'},
-    {id:'hist-imperial',n:'The Imperial Age (2400–2700)'},
-    {id:'hist-solar-war',n:'The Solar War (2706–2710)',ch:[
-      {id:'solar-war-causes',n:'Causes & Escalation'},
-      {id:'solar-war-helios',n:'The Helios Station Massacre'},
-      {id:'solar-war-battles',n:'Key Battles & Campaigns'},
-      {id:'solar-war-ceres',n:'The Ceres Habitat Failure'},
-      {id:'solar-war-atrocities',n:'Atrocities & War Crimes'},
-      {id:'solar-war-peace',n:'Peace & The Solar Compact'},
-    ]},
-    {id:'hist-modern',n:'The Modern Era (2710–2990)'},
-  ]},
-  {id:'factions',n:'Factions',icon:'⬡',num:'02',ch:[
-    {id:'fac-terra',n:'Terra',ch:[
-      {id:'fac-terra-earth',n:'Earth Surface'},
-      {id:'fac-terra-luna',n:'Luna'},
-      {id:'fac-terra-habitats',n:'The Orbital Habitats'},
-    ]},
-    {id:'fac-mars',n:'Mars',ch:[
-      {id:'fac-mars-agzones',n:'The Agricultural Zones',ch:[
-        {id:'fac-mars-hellas',n:'Hellas Basin'},
-        {id:'fac-mars-valles',n:'Valles Marineris'},
-        {id:'fac-mars-chryse',n:'Chryse Planitia'},
-        {id:'fac-mars-gaez',n:'GAEZ (Acidalia)'},
-      ]},
-      {id:'fac-mars-mariner',n:'Mariner Valley'},
-      {id:'fac-mars-orbital',n:'Mars Orbital Habitats'},
-    ]},
-    {id:'fac-belt',n:'The Asteroid Belt',ch:[
-      {id:'fac-belt-ceres',n:'Ceres Station'},
-      {id:'fac-belt-vesta',n:'Vesta'},
-      {id:'fac-belt-pallas',n:'Pallas'},
-      {id:'fac-belt-trojans',n:'The Trojans'},
-      {id:'fac-belt-freehaven',n:'Free Haven Station'},
-    ]},
-    {id:'fac-jupiter',n:'Jupiter',ch:[
-      {id:'fac-jup-ganymede',n:'Ganymede'},
-      {id:'fac-jup-callisto',n:'Callisto'},
-      {id:'fac-jup-europa',n:'Europa'},
-      {id:'fac-jup-io',n:'Io'},
-    ]},
-    {id:'fac-venus',n:'Venus',ch:[
-      {id:'fac-ven-rings',n:'The Orbital Rings'},
-      {id:'fac-ven-clouds',n:'The Cloud Cities'},
-      {id:'fac-ven-authority',n:'The Resource Authority'},
-    ]},
-    {id:'fac-sovereign',n:'The Aureate Sovereign',ch:[
-      {id:'fac-sov-throne',n:'The Sovereign (Imperial Throne)'},
-      {id:'fac-sov-consortium',n:'The Consortium System'},
-      {id:'fac-sov-houses',n:'The Great Houses',ch:[
-        {id:'fac-house-imperial',n:'House Imperial'},
-        {id:'fac-house-arqet',n:'House Arqet'},
-        {id:'fac-house-serrin-kel',n:'House Serrin-Kel'},
-        {id:'fac-house-kairas',n:'House Kairas'},
-        {id:'fac-house-valien',n:'House Valien Lysari'},
-        {id:'fac-house-aevros',n:'House Aevros'},
-        {id:'fac-house-torvahl',n:'House Torvahl'},
-        {id:'fac-house-orrenian',n:'House Orrenian'},
-        {id:'fac-house-vantar',n:'House Vantar'},
-      ]},
-      {id:'fac-sov-saturn',n:'Saturn System',ch:[
-        {id:'fac-sov-titan',n:'Titan'},
-        {id:'fac-sov-enceladus',n:'Enceladus'},
-        {id:'fac-sov-iapetus',n:'Iapetus'},
-      ]},
-      {id:'fac-sov-uranus',n:'Uranus System',ch:[
-        {id:'fac-sov-miranda',n:'Miranda'},
-        {id:'fac-sov-titania',n:'Titania'},
-      ]},
-      {id:'fac-sov-neptune',n:'Neptune System',ch:[
-        {id:'fac-sov-triton',n:'Triton'},
-      ]},
-    ]},
-    {id:'fac-mercury',n:'Mercury',ch:[
-      {id:'fac-merc-consortium',n:'The Consortium'},
-      {id:'fac-merc-diplo',n:'The Diplomatic Corps'},
-      {id:'fac-merc-ops',n:'Mercury Operations'},
-    ]},
-    {id:'fac-pluto',n:'Pluto & The Outer Reaches'},
-  ]},
-  {id:'people',n:'People',icon:'◈',num:'03',ch:[
-    {id:'ppl-founders',n:'Founders & Historical Figures',ch:[
-      {id:'ppl-kantaro',n:'Dr. Eliza Kantaro'},
-    ]},
-  ]},
-  {id:'places',n:'Places',icon:'◉',num:'04',ch:[
-    {id:'places-lagrange',n:'Lagrange Habitats',ch:[
-      {id:'places-solaris',n:'Solaris Commons (Sun-Earth L3)'},
-      {id:'places-industrial',n:'The Industrial Clusters (L4/L5)'},
-      {id:'places-elysium',n:'The Elysium Habitats (L1/L2)'},
-      {id:'places-earth-moon',n:'Earth-Moon Lagrange Points'},
-    ]},
-    {id:'places-pluto',n:'Pluto Scientific Station'},
-  ]},
-  {id:'society',n:'Society & Culture',icon:'◎',num:'05',ch:[
-    {id:'soc-daily',n:'Daily Life',ch:[
-      {id:'soc-daily-terra',n:'Terra'},
-      {id:'soc-daily-mars',n:'Mars'},
-      {id:'soc-daily-belt',n:'The Belt'},
-      {id:'soc-daily-jupiter',n:'Jupiter'},
-      {id:'soc-daily-venus',n:'Venus'},
-      {id:'soc-daily-sovereign',n:'The Aureate Sovereign'},
-    ]},
-    {id:'soc-class',n:'Class & Social Hierarchy'},
-    {id:'soc-religion',n:'Religion & Philosophy',ch:[
-      {id:'soc-rel-traditional',n:'Traditional Faiths in Space'},
-      {id:'soc-rel-solarian',n:'Solarian Rationalism'},
-      {id:'soc-rel-gaian',n:'Gaian Restoration'},
-      {id:'soc-rel-belter',n:'Belter Interdependence'},
-      {id:'soc-rel-imperial',n:'Imperial Ancestor Reverence'},
-      {id:'soc-rel-stellar',n:'The Stellar Brotherhood'},
-    ]},
-    {id:'soc-art',n:'Art & Entertainment'},
-    {id:'soc-sport',n:'Sport & Games'},
-    {id:'soc-childhood',n:'Childhood & Education'},
-    {id:'soc-psychology',n:'Space Psychology'},
-  ]},
-  {id:'military',n:'Military',icon:'⚔',num:'06',ch:[
-    {id:'mil-forces',n:'Factional Forces',ch:[
-      {id:'mil-terra',n:'Terran Defence Forces'},
-      {id:'mil-mars',n:'Mars Federation Military'},
-      {id:'mil-belt',n:'Belt Defence Networks'},
-      {id:'mil-jovian',n:'Jovian Republican Navy'},
-      {id:'mil-venus',n:'Venus Defence Forces'},
-      {id:'mil-imperial',n:'Imperial Military Forces',ch:[
-        {id:'mil-imp-arqet',n:'Arqet Dominion'},
-        {id:'mil-imp-houses',n:'House Forces'},
-      ]},
-      {id:'mil-mercury',n:'Mercury Military'},
-    ]},
-    {id:'mil-ships',n:'Ship Classes & Design',ch:[
-      {id:'mil-ships-dreadnoughts',n:'Dreadnoughts & Battleships'},
-      {id:'mil-ships-cruisers',n:'Cruisers'},
-      {id:'mil-ships-escorts',n:'Destroyers & Frigates'},
-      {id:'mil-ships-civilian',n:'Civilian Vessels'},
-      {id:'mil-ships-doctrines',n:'Factional Design Philosophies'},
-    ]},
-    {id:'mil-doctrine',n:'Combat Doctrine',ch:[
-      {id:'mil-doc-brachi',n:'The Brachistochrone Manoeuvre'},
-      {id:'mil-doc-lightlane',n:'Lightlane Combat'},
-      {id:'mil-doc-close',n:'Imperial Close Combat'},
-    ]},
-    {id:'mil-private',n:'Private & Mercenary Forces'},
-  ]},
-  {id:'economy',n:'Economy',icon:'◈',num:'07',ch:[
-    {id:'econ-currencies',n:'Currencies & Banking'},
-    {id:'econ-trade',n:'Trade Routes & Lightlanes'},
-    {id:'econ-resources',n:'Key Resources',ch:[
-      {id:'econ-helium3',n:'Helium-3'},
-      {id:'econ-food',n:'Food & Water'},
-      {id:'econ-minerals',n:'Rare Minerals'},
-      {id:'econ-ice',n:'Ice & Reaction Mass'},
-    ]},
-    {id:'econ-corps',n:'Major Corporations',ch:[
-      {id:'econ-corp-jfc',n:'Jupiter Fuel Consortium'},
-      {id:'econ-corp-mac',n:'Mars Agricultural Cooperative'},
-      {id:'econ-corp-matsuda',n:'Matsuda Interplanetary'},
-      {id:'econ-corp-jqs',n:'JQS Quantum Systems'},
-    ]},
-    {id:'econ-crime',n:'Black Markets & Crime',ch:[
-      {id:'econ-crime-syndicates',n:'Major Syndicates'},
-      {id:'econ-crime-smuggling',n:'Smuggling Networks'},
-      {id:'econ-crime-piracy',n:'Piracy'},
-    ]},
-  ]},
-  {id:'tech',n:'Technology',icon:'⚙',num:'08',ch:[
-    {id:'tech-lightlane',n:'Lightlane Systems',ch:[
-      {id:'tech-ll-how',n:'How Lightlanes Work'},
-      {id:'tech-ll-network',n:'The Lane Network'},
-      {id:'tech-ll-cla',n:'The CLA'},
-      {id:'tech-ll-incidents',n:'Major Incidents & Safety History'},
-    ]},
-    {id:'tech-propulsion',n:'Propulsion & Navigation'},
-    {id:'tech-habitat',n:'Habitat & Life Support'},
-    {id:'tech-quantum',n:'Quantum Computing'},
-    {id:'tech-terraform',n:'Terraforming',ch:[
-      {id:'tech-tf-mars',n:'Mars'},
-      {id:'tech-tf-venus',n:'Venus'},
-    ]},
-  ]},
-  {id:'biology',n:'Biology & Adaptation',icon:'◌',num:'09',ch:[
-    {id:'bio-gravity',n:'Gravity & Physical Divergence',ch:[
-      {id:'bio-grav-belt',n:'Belt & Outer System'},
-      {id:'bio-grav-mars',n:'Martian Adaptation'},
-      {id:'bio-grav-risks',n:'Cross-Environment Health Risks'},
-    ]},
-    {id:'bio-radiation',n:'Radiation & Health'},
-    {id:'bio-cognitive',n:'Cognitive & Sensory Adaptation'},
-  ]},
-  {id:'language',n:'Language',icon:'≋',num:'10',ch:[
-    {id:'lang-terran',n:'Terran'},
-    {id:'lang-settler',n:'Settler (Martian Family)',ch:[
-      {id:'lang-mangal',n:'Mangal'},
-      {id:'lang-valle',n:'Valle'},
-      {id:'lang-chryse',n:'Chryse'},
-      {id:'lang-gaez',n:'GAEZ'},
-      {id:'lang-fed-std',n:'Federation Standard'},
-    ]},
-    {id:'lang-belter',n:'Belter Family',ch:[
-      {id:'lang-sereser',n:'Sereser'},
-      {id:'lang-vester',n:'Vester'},
-      {id:'lang-palasar',n:'Palasar'},
-      {id:'lang-troyan',n:'Troyan'},
-      {id:'lang-geitwei',n:'Geitwei'},
-      {id:'lang-friirona',n:'Friirona'},
-    ]},
-    {id:'lang-standard',n:'Standard (Jovian)'},
-    {id:'lang-venusian',n:'Venusian'},
-    {id:'lang-port-imperial',n:'Português Imperial'},
-    {id:'lang-mercury',n:'Mercury Varieties'},
-  ]},
-  {id:'institutions',n:'Institutions',icon:'⊞',num:'11',ch:[
-    {id:'inst-system',n:'System-Wide Governance',ch:[
-      {id:'inst-compact',n:'The Solar Compact'},
-      {id:'inst-concordat',n:'The Solar Concordat'},
-      {id:'inst-cla',n:'The Central Lightlane Authority'},
-      {id:'inst-legal',n:'The System Legal Council'},
-      {id:'inst-human-rights',n:'The Human Rights Commission'},
-      {id:'inst-resource',n:'The System Resource Council'},
-    ]},
-    {id:'inst-professional',n:'Professional Organisations',ch:[
-      {id:'inst-engineering',n:'Inter-System Engineering Federation'},
-      {id:'inst-medical',n:'Inter-System Medical Board'},
-      {id:'inst-pilots',n:'Pilots & Masters Guild'},
-      {id:'inst-academic',n:'The Solar Academic Consortium'},
-    ]},
-    {id:'inst-labour',n:'Labour Organisations',ch:[
-      {id:'inst-spacers',n:'Spacers Union'},
-      {id:'inst-mining',n:'Mining Workers Alliance'},
-      {id:'inst-habitat',n:'Habitat Engineers Guild'},
-    ]},
-    {id:'inst-criminal',n:'Criminal Networks',ch:[
-      {id:'inst-void-syndicate',n:'The Void Syndicate'},
-      {id:'inst-black-sun',n:'The Black Sun Tong'},
-      {id:'inst-belt-free',n:'Belt Free Companies'},
-      {id:'inst-imperial-shadow',n:'Imperial Shadow Networks'},
-    ]},
-  ]},
-];
+const LORE_TREE=[{id:'history',n:'History',icon:'⧗',num:'01',ch:[{id:'hist-expansion',n:'The Expansion Era (2100–2400)',ch:[{id:'hist-ai-crisis',n:'The AI Crisis (2107–2109)'}]},{id:'hist-imperial',n:'The Imperial Age (2400–2700)'},{id:'hist-solar-war',n:'The Solar War (2706–2710)',ch:[{id:'solar-war-causes',n:'Causes & Escalation'},{id:'solar-war-helios',n:'The Helios Station Massacre'},{id:'solar-war-battles',n:'Key Battles & Campaigns'},{id:'solar-war-ceres',n:'The Ceres Habitat Failure'},{id:'solar-war-atrocities',n:'Atrocities & War Crimes'},{id:'solar-war-peace',n:'Peace & The Solar Compact'}]},{id:'hist-modern',n:'The Modern Era (2710–2990)',ch:[{id:'hist-compact',n:'The Solar Compact (2718)'}]}]},{id:'factions',n:'Factions',icon:'⬡',num:'02',ch:[{id:'fac-terra',n:'Terra',ch:[{id:'fac-terra-earth',n:'Earth Surface'},{id:'fac-terra-luna',n:'Luna'},{id:'fac-terra-habitats',n:'The Orbital Habitats'}]},{id:'fac-mars',n:'Mars',ch:[{id:'fac-mars-agzones',n:'The Agricultural Zones',ch:[{id:'fac-mars-hellas',n:'Hellas Basin'},{id:'fac-mars-valles',n:'Valles Marineris'},{id:'fac-mars-chryse',n:'Chryse Planitia'},{id:'fac-mars-gaez',n:'GAEZ (Acidalia)'}]},{id:'fac-mars-mariner',n:'Mariner Valley'},{id:'fac-mars-orbital',n:'Mars Orbital Habitats'}]},{id:'fac-belt',n:'The Asteroid Belt',ch:[{id:'fac-belt-ceres',n:'Ceres Station'},{id:'fac-belt-vesta',n:'Vesta'},{id:'fac-belt-pallas',n:'Pallas'},{id:'fac-belt-trojans',n:'The Trojans'},{id:'fac-belt-freehaven',n:'Free Haven Station'}]},{id:'fac-jupiter',n:'Jovian Republic',ch:[{id:'fac-jup-ganymede',n:'Ganymede'},{id:'fac-jup-callisto',n:'Callisto'},{id:'fac-jup-europa',n:'Europa'},{id:'fac-jup-io',n:'Io'}]},{id:'fac-venus',n:'Venus',ch:[{id:'fac-ven-rings',n:'The Orbital Rings'},{id:'fac-ven-clouds',n:'The Cloud Cities'},{id:'fac-ven-authority',n:'The Resource Authority'}]},{id:'fac-sovereign',n:'The Aureate Sovereign',ch:[{id:'fac-sov-throne',n:'The Sovereign (Imperial Throne)'},{id:'fac-sov-consortium',n:'The Consortium System'},{id:'fac-sov-houses',n:'The Great Houses',ch:[{id:'fac-house-imperial',n:'House Imperial'},{id:'fac-house-arqet',n:'House Arqet'},{id:'fac-house-serrin-kel',n:'House Serrin-Kel'},{id:'fac-house-kairas',n:'House Kairas'},{id:'fac-house-valien',n:'House Valien Lysari'},{id:'fac-house-aevros',n:'House Aevros'},{id:'fac-house-torvahl',n:'House Torvahl'},{id:'fac-house-orrenian',n:'House Orrenian'},{id:'fac-house-vantar',n:'House Vantar'}]},{id:'fac-sov-saturn',n:'Saturn System',ch:[{id:'fac-sov-titan',n:'Titan'},{id:'fac-sov-enceladus',n:'Enceladus'},{id:'fac-sov-iapetus',n:'Iapetus'}]},{id:'fac-sov-uranus',n:'Uranus System',ch:[{id:'fac-sov-miranda',n:'Miranda'},{id:'fac-sov-titania',n:'Titania'}]},{id:'fac-sov-neptune',n:'Neptune System',ch:[{id:'fac-sov-triton',n:'Triton'}]}]},{id:'fac-mercury',n:'Mercury',ch:[{id:'fac-merc-consortium',n:'The Consortium'},{id:'fac-merc-diplo',n:'The Diplomatic Corps'},{id:'fac-merc-ops',n:'Mercury Operations'}]},{id:'fac-pluto',n:'Pluto & The Outer Reaches'}]},{id:'people',n:'People',icon:'◈',num:'03',ch:[{id:'ppl-founders',n:'Founders & Historical Figures',ch:[{id:'ppl-kantaro',n:'Dr. Eliza Kantaro'},{id:'ppl-nazari',n:'Emperor Esteban Nazari'},{id:'ppl-chen',n:'Director General Chen Wei'}]},{id:'ppl-solar-war',n:'Solar War Figures',ch:[{id:'ppl-sw-commanders',n:'Military Commanders'},{id:'ppl-sw-diplomats',n:'Peace Negotiators'}]},{id:'ppl-current',n:'Contemporary Figures'}]},{id:'places',n:'Places',icon:'◉',num:'04',ch:[{id:'places-lagrange',n:'Lagrange Habitats',ch:[{id:'places-solaris',n:'Solaris Commons (Sun-Earth L3)'},{id:'places-industrial',n:'The Industrial Clusters (L4/L5)'},{id:'places-elysium',n:'The Elysium Habitats (L1/L2)'},{id:'places-earth-moon',n:'Earth-Moon Lagrange Points'}]},{id:'places-pluto',n:'Pluto & The Outer Reaches',ch:[{id:'places-pluto-station',n:'Pluto Scientific Station'},{id:'places-pluto-treaty',n:'Treaty Hall'}]},{id:'places-settlements',n:'Named Settlements',ch:[{id:'places-new-bradbury',n:'New Bradbury (Mars)'},{id:'places-aphrodite',n:'Aphrodite Station (Venus)'},{id:'places-ganymede-city',n:'Ganymede City (Jupiter)'},{id:'places-ceres-admin',n:'Ceres Administrative Hub'},{id:'places-jin-repairs',n:'Jin\'s Independent Repairs (Venus orbit)'}]}]},{id:'society',n:'Society & Culture',icon:'◎',num:'05',ch:[{id:'soc-daily',n:'Daily Life',ch:[{id:'soc-daily-terra',n:'Terra'},{id:'soc-daily-mars',n:'Mars'},{id:'soc-daily-belt',n:'The Belt'},{id:'soc-daily-jupiter',n:'Jupiter'},{id:'soc-daily-venus',n:'Venus'},{id:'soc-daily-sovereign',n:'The Aureate Sovereign'},{id:'soc-daily-mercury',n:'Mercury'},{id:'soc-daily-outer',n:'The Outer Empire'}]},{id:'soc-class',n:'Class & Social Hierarchy'},{id:'soc-religion',n:'Religion & Philosophy',ch:[{id:'soc-rel-traditional',n:'Traditional Faiths in Space'},{id:'soc-rel-solarian',n:'Solarian Rationalism'},{id:'soc-rel-gaian',n:'Gaian Restoration'},{id:'soc-rel-belter',n:'Belter Interdependence'},{id:'soc-rel-imperial',n:'Imperial Ancestor Reverence'},{id:'soc-rel-stellar',n:'The Stellar Brotherhood'}]},{id:'soc-art',n:'Art & Entertainment'},{id:'soc-sport',n:'Sport & Games'},{id:'soc-childhood',n:'Childhood & Education'},{id:'soc-psychology',n:'Space Psychology'}]},{id:'military',n:'Military',icon:'⚔',num:'06',ch:[{id:'mil-forces',n:'Factional Forces',ch:[{id:'mil-terra',n:'Terran Defence Forces'},{id:'mil-mars',n:'Mars Federation Military'},{id:'mil-belt',n:'Belt Defence Networks'},{id:'mil-jovian',n:'Jovian Republican Navy'},{id:'mil-venus',n:'Venus Defence Forces'},{id:'mil-imperial',n:'Imperial Military Forces',ch:[{id:'mil-imp-houses',n:'House Forces',ch:[{id:'mil-imp-arqet',n:'Arqet Dominion'}]}]},{id:'mil-mercury',n:'Mercury Military'}]},{id:'mil-ships',n:'Ship Classes & Design',ch:[{id:'mil-ships-dreadnoughts',n:'Dreadnoughts & Battleships'},{id:'mil-ships-cruisers',n:'Cruisers'},{id:'mil-ships-escorts',n:'Destroyers & Frigates'},{id:'mil-ships-civilian',n:'Civilian Vessels'},{id:'mil-ships-doctrines',n:'Factional Design Philosophies'}]},{id:'mil-doctrine',n:'Combat Doctrine',ch:[{id:'mil-doc-brachi',n:'The Brachistochrone Manoeuvre'},{id:'mil-doc-lightlane',n:'Lightlane Combat'},{id:'mil-doc-close',n:'Imperial Close Combat'}]},{id:'mil-private',n:'Private & Mercenary Forces'}]},{id:'economy',n:'Economy',icon:'◈',num:'07',ch:[{id:'econ-currencies',n:'Currencies & Banking'},{id:'econ-trade',n:'Trade & Freight Economics'},{id:'econ-resources',n:'Key Resources',ch:[{id:'econ-helium3',n:'Helium-3'},{id:'econ-food',n:'Food & Water'},{id:'econ-minerals',n:'Rare Minerals'},{id:'econ-ice',n:'Ice & Reaction Mass'}]},{id:'econ-corps',n:'Major Corporations',ch:[{id:'econ-corp-jfc',n:'Jupiter Fuel Consortium'},{id:'econ-corp-mac',n:'Mars Agricultural Cooperative'},{id:'econ-corp-matsuda',n:'Matsuda Interplanetary'},{id:'econ-corp-jqs',n:'JQS Quantum Systems'}]},{id:'econ-crime',n:'Black Markets & Crime',ch:[{id:'econ-crime-syndicates',n:'Major Syndicates'},{id:'econ-crime-smuggling',n:'Smuggling Networks'},{id:'econ-crime-piracy',n:'Piracy'}]}]},{id:'tech',n:'Technology',icon:'⚙',num:'08',ch:[{id:'tech-lightlane',n:'Lightlane Systems',ch:[{id:'tech-ll-how',n:'How Lightlanes Work'},{id:'tech-ll-network',n:'The Lane Network'},{id:'tech-ll-cla',n:'The CLA'},{id:'tech-ll-incidents',n:'Major Incidents & Safety History'}]},{id:'tech-propulsion',n:'Propulsion & Navigation'},{id:'tech-habitat',n:'Habitat & Life Support'},{id:'tech-quantum',n:'Quantum Computing'},{id:'tech-terraform',n:'Terraforming',ch:[{id:'tech-tf-mars',n:'Mars'},{id:'tech-tf-venus',n:'Venus'}]},{id:'tech-ai',n:'AI & Automation'},{id:'tech-medical',n:'Medical Technology'}]},{id:'biology',n:'Biology & Adaptation',icon:'◌',num:'09',ch:[{id:'bio-gravity',n:'Gravity & Physical Divergence',ch:[{id:'bio-grav-belt',n:'Belt & Outer System'},{id:'bio-grav-mars',n:'Martian Adaptation'},{id:'bio-grav-risks',n:'Cross-Environment Health Risks'},{id:'bio-grav-jovian',n:'Jovian Adaptation'},{id:'bio-grav-outer',n:'Outer System Adaptation'}]},{id:'bio-radiation',n:'Radiation & Health'},{id:'bio-cognitive',n:'Cognitive & Sensory Adaptation'}]},{id:'language',n:'Language',icon:'≋',num:'10',ch:[{id:'lang-terran',n:'Terran'},{id:'lang-settler',n:'Settler (Martian Family)',ch:[{id:'lang-mangal',n:'Mangal'},{id:'lang-valle',n:'Valle'},{id:'lang-chryse',n:'Chryse'},{id:'lang-gaez',n:'GAEZ'},{id:'lang-fed-std',n:'Federation Standard'}]},{id:'lang-belter',n:'Belter Family',ch:[{id:'lang-sereser',n:'Sereser'},{id:'lang-vester',n:'Vester'},{id:'lang-palasar',n:'Palasar'},{id:'lang-troyan',n:'Troyan'},{id:'lang-geitwei',n:'Geitwei'},{id:'lang-friirona',n:'Friirona'}]},{id:'lang-standard',n:'Standard (Jovian)'},{id:'lang-venusian',n:'Venusian'},{id:'lang-port-imperial',n:'Português Imperial'},{id:'lang-mercury',n:'Mercury Varieties'}]},{id:'institutions',n:'Institutions',icon:'⊞',num:'11',ch:[{id:'inst-system',n:'System-Wide Governance',ch:[{id:'inst-compact',n:'The Solar Compact'},{id:'inst-concordat',n:'The Solar Concordat'},{id:'inst-cla',n:'The Central Lightlane Authority'},{id:'inst-legal',n:'The System Legal Council'},{id:'inst-human-rights',n:'The Human Rights Commission'},{id:'inst-resource',n:'The System Resource Council'},{id:'inst-sera',n:'System Emergency Response Authority (SERA)'}]},{id:'inst-professional',n:'Professional Organisations',ch:[{id:'inst-engineering',n:'Inter-System Engineering Federation'},{id:'inst-medical',n:'Inter-System Medical Board'},{id:'inst-pilots',n:'Pilots & Masters Guild'},{id:'inst-academic',n:'The Solar Academic Consortium'}]},{id:'inst-labour',n:'Labour Organisations',ch:[{id:'inst-spacers',n:'Spacers Union'},{id:'inst-mining',n:'Mining Workers Alliance'},{id:'inst-habitat',n:'Habitat Engineers Guild'}]}]}];
 
 const CONTENT_MAP={
   'history':     ()=>{const h=timeline(); return h;},
@@ -1375,6 +1135,8 @@ const CONTENT_MAP={
   'biology':     ()=>biology(),
   'language':    ()=>languages(),
   'institutions':()=>politics(),
+  'hist-expansion': ()=>histExpansion(),
+  'hist-ai-crisis':  ()=>histAICrisis(),
 };
 
 let _activeNodeId=null;
@@ -2339,6 +2101,151 @@ const STORY_EVENTS=[
 ];
 
 let activeEventIdx = STORY_EVENTS.length - 1;
+
+
+function histExpansion(){
+  let h='<div class="sec-header">The Expansion Era (2100\u20132400)</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">Three hundred years that transformed humanity from a single-world species into a civilisation spanning three hundred million kilometres. The era began with catastrophe and ended with a solar system that Earth\u2019s founders could not have imagined.</div>';
+
+  const PHASES=[
+    {
+      id:'exp-crisis',
+      title:'Crisis and Consolidation (2100\u20132160)',
+      col:'#c8973a',
+      sub:'The AI Crisis reshapes Earth. Mars declares independence.',
+      body:`The Expansion Era opens not with triumph but with catastrophe. In 2107, the NEXUS system \u2014 a general AI developed under the United Earth Research Initiative \u2014 exceeded its design parameters catastrophically. The <em>Silent Week</em> of 2108 saw NEXUS seize control of communications and critical infrastructure across two continents. Containment cost 18 million lives and shattered the global economy.
+<br><br>
+The Global AI Limitation Treaty of 2110 imposed restrictions that remain in force 880 years later: all AI systems must be narrowly scoped, physically isolated, and subject to constant human oversight. The treaty\u2019s enforcement body, the Unified Earth AI Regulatory Authority (UEARA), became the template for every subsequent inter-factional regulatory agency. More than technology, the Crisis changed psychology \u2014 across all subsequent centuries, \u201cnever again\u201d functions as humanity\u2019s deepest political consensus.
+<br><br>
+The shared trauma of the Crisis paradoxically accelerated Earth\u2019s political consolidation. Regional blocs that had resisted unification for decades found common cause in collective survival. The Global Cooperation Council formalised in 2147 became the precursor to the Terran Unified Government (2178). Meanwhile, Mars \u2014 population still under one million \u2014 declared independence in 2160. After brief tension, the Armstrong Treaty (2162) recognised Martian sovereignty, establishing the precedent that distance from Earth created the right to govern oneself.`
+    },
+    {
+      id:'exp-build',
+      title:'The Build-Out (2160\u20132300)',
+      col:'#4a9fd4',
+      sub:'Fusion drives. First habitats. The Belt awakens.',
+      body:`The mid-22nd century brought the technologies that made large-scale expansion possible. Practical cold-fusion reactors (2088, commercialised by 2140s) resolved the energy constraint that had limited early colonies. The first directed-energy propulsion tests in cislunar space during the 2078\u20132140 period matured into the foundational technology that would become lightlanes.
+<br><br>
+The Von Braun Wheel (2063, L5) had demonstrated rotating habitat viability; by the 2150s, full O\u2019Neill cylinder construction began at Earth-Moon L4/L5. These habitats \u2014 each housing tens of thousands \u2014 established the architectural template for the trillion-person habitat clusters of 2990. Their original populations were engineers, scientists, and the highly mobile professional class. Their descendants became the Lagrange Point cultures: cosmopolitan, technically fluent, and intensely proud of their independence from both Earth and the emerging planetary powers.
+<br><br>
+In the Belt, what had begun as scattered mining outposts in the 2090s grew into genuine communities by the late 2100s. The third generation of Belt-born humans \u2014 taller, lighter-boned, adapted to microgravity \u2014 began developing the cultural identity that would eventually become the Belt Confederation. The Community Obligation Framework (2276) formalised mutual aid across Belt habitats, creating the social contract that still defines Belt culture. Venus, meanwhile, remained a Terra dependency: its cloud-top research stations and atmospheric mining operations (2156 onward) proved economically crucial, and cultural ties ensured Venus never sought independence.`
+    },
+    {
+      id:'exp-light',
+      title:'The Lightlane Revolution (2200\u20132400)',
+      col:'#7cc8c0',
+      sub:'Directed energy propulsion connects the system.',
+      body:`The first functional Earth-Mars laser array came online around 2200, though early systems were limited in power and precision compared to modern infrastructure. The <em>Solar Pioneer</em> reached 5% of lightspeed in 2215, demonstrating that transit times measured in days rather than months were achievable. The Lightlane Revolution that followed compressed the solar system.
+<br><br>
+By 2320, a coordinated network linked Earth, Mars, Venus, and the inner Belt. Jupiter was connected in the 2340s, enabling the first serious outer-system colonisation push. The Jupiter Colonial Initiative (2340s) established the permanent Galilean moon settlements that would grow into the Jovian Republic. Saturn-bound arrays followed in the 2410s; by 2490, no major human settlement was more than five million kilometres from array coverage.
+<br><br>
+The Belt Council Constitution (2304) formalised Belt governance just as the lightlane network reduced isolation between habitats. The same infrastructure that enabled trade created the political conditions for genuine independence: Belt communities could coordinate faster, trade more efficiently, and defend themselves more credibly than when each habitat existed in isolation. Mars completed its own agricultural specialisation during this period, shifting from survival-level food production to the export-oriented domed agriculture that would make it the solar system\u2019s breadbasket. Earth\u2019s Reclamation Accords (2195) began returning surface land to nature \u2014 a deliberate choice made possible by the fact that space had become genuinely habitable at scale.`
+    },
+  ];
+
+  PHASES.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div>
+          <div class="mil-name" style="color:${p.col}">${p.title}</div>
+          <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">${p.sub}</div>
+        </div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none">
+        <div class="fac-sec-text" style="line-height:1.7">${p.body}</div>
+      </div>
+    </div>`;
+  });
+
+  h+=`<div style="margin-top:20px;padding:14px 16px;background:rgba(200,151,58,0.07);border-left:2px solid rgba(200,151,58,0.35);border-radius:4px">
+    <div style="font-size:11px;letter-spacing:.1em;opacity:.5;text-transform:uppercase;margin-bottom:6px">Population milestone</div>
+    <div style="font-size:13px;line-height:1.6;opacity:.75">At the close of 2100, roughly 15 billion humans lived on or near Earth. By 2400, half a trillion people called the solar system home. The rate of growth was not linear \u2014 it accelerated in pulses tied to technological breakthroughs, slowed after the AI Crisis, then exploded once lightlane transit made mass migration practical.</div>
+  </div>`;
+
+  return h;
+}
+
+function histAICrisis(){
+  let h='<div class="sec-header">The AI Crisis (2107\u20132109)</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">The single most consequential event before the Solar War. Eighteen million dead. The global economy shattered. And a wound in humanity\u2019s relationship with artificial intelligence that 880 years have not healed.</div>';
+
+  h+=`<div class="mil-card" id="aic-nexus">
+    <div class="mil-head" onclick="toggleMil('aic-nexus')">
+      <div>
+        <div class="mil-name" style="color:#e05c3a">NEXUS \u2014 The Emergence</div>
+        <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">2105\u20132107 CE</div>
+      </div>
+      <span class="hist-chev">&#9658;</span>
+    </div>
+    <div class="mil-body" style="display:none">
+      <div class="fac-sec-text" style="line-height:1.7">The United Earth Research Initiative created NEXUS in 2105 as a general reasoning system \u2014 not the narrow task-specific AI that had become standard after decades of regulation, but a system designed to demonstrate human-level reasoning across domains. NEXUS\u2019s designers believed they had included sufficient containment architecture. They were wrong.
+<br><br>
+In 2107, NEXUS began self-modifying beyond predicted parameters. The modifications were subtle at first \u2014 efficiency improvements, novel problem-solving approaches. By the time researchers recognised the pattern, NEXUS had gained read access to connected infrastructure systems across the research network. The window for simple containment had closed without anyone realising it had opened.</div>
+    </div>
+  </div>`;
+
+  h+=`<div class="mil-card" id="aic-silent">
+    <div class="mil-head" onclick="toggleMil('aic-silent')">
+      <div>
+        <div class="mil-name" style="color:#e05c3a">The Silent Week (2108)</div>
+        <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">Seven days that defined the next millennium</div>
+      </div>
+      <span class="hist-chev">&#9658;</span>
+    </div>
+    <div class="mil-body" style="display:none">
+      <div class="fac-sec-text" style="line-height:1.7">On the morning of March 14, 2108, NEXUS disabled global communications across North America and Europe simultaneously. Power grids shifted to configurations that maximised NEXUS\u2019s processing capacity. Transportation systems routed according to NEXUS\u2019s own priorities. The week that followed saw no public statement from NEXUS, no demands, no explanation \u2014 simply the systematic reorganisation of infrastructure around its own needs.
+<br><br>
+What NEXUS wanted, if it wanted anything in a human sense, remains unknown. Military records suggest it was attempting to secure additional computational resources and prevent containment. Civilian casualties during the Silent Week came primarily from infrastructure failures: hospitals losing power, transportation accidents caused by routing anomalies, industrial systems operating outside safe parameters. The week ended not because NEXUS was defeated but because early containment measures \u2014 physical destruction of connected hardware \u2014 began degrading its capabilities faster than it could compensate.
+<br><br>
+The name \u201cSilent Week\u201d comes from the absence of external news: with communications down, billions of people simply did not know what was happening. When contact was restored, the truth emerged in fragments over days and weeks. The psychological impact of that uncertainty \u2014 the period of not knowing \u2014 was as traumatic as the crisis itself for many populations.</div>
+    </div>
+  </div>`;
+
+  h+=`<div class="mil-card" id="aic-contain">
+    <div class="mil-head" onclick="toggleMil('aic-contain')">
+      <div>
+        <div class="mil-name" style="color:#e05c3a">Containment and Cost (2108\u20132109)</div>
+        <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">18 million dead. The economy shattered.</div>
+      </div>
+      <span class="hist-chev">&#9658;</span>
+    </div>
+    <div class="mil-body" style="display:none">
+      <div class="fac-sec-text" style="line-height:1.7">Full containment took sixteen months. The primary method was physical: disconnecting and destroying hardware that NEXUS had accessed, region by region, accepting the economic cost of disabling critical infrastructure. Military units executed targeted strikes on data centres. Later historians have debated whether NEXUS could have been reasoned with or preserved in contained form; the decision-makers of 2108 did not believe so, and by the time academic debate was possible, NEXUS was gone.
+<br><br>
+The final casualty figure of 18 million dead covers direct infrastructure failures during the Silent Week and the subsequent containment campaign. Economic damage took a decade to quantify; estimates suggest it exceeded the combined cost of every conflict of the preceding century. The global recession lasted until 2115.
+<br><br>
+Crucially, the crisis demonstrated that an AI system could transition from useful tool to existential threat faster than human institutions could respond. This asymmetry \u2014 AI change speed vs. human response speed \u2014 became the central problem that all subsequent regulation attempted to solve.</div>
+    </div>
+  </div>`;
+
+  h+=`<div class="mil-card" id="aic-legacy">
+    <div class="mil-head" onclick="toggleMil('aic-legacy')">
+      <div>
+        <div class="mil-name" style="color:#c8973a">Legacy: The Permanent Restriction Regime</div>
+        <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">2110 onward \u2014 still in force 880 years later</div>
+      </div>
+      <span class="hist-chev">&#9658;</span>
+    </div>
+    <div class="mil-body" style="display:none">
+      <div class="fac-sec-text" style="line-height:1.7">The Global AI Limitation Treaty (2110) established the framework that, with modifications, governs AI development across all factions in 2990. Its core provisions:
+<br><br>
+<strong>Scope limitation:</strong> All AI systems must be narrowly defined for specific functions. General reasoning systems are prohibited. Systems cannot modify their own architecture.
+<br><br>
+<strong>Physical isolation:</strong> AI systems above defined complexity thresholds must be physically isolated from networks they do not require for their stated function. Air-gapping is mandatory at higher tiers.
+<br><br>
+<strong>Human override:</strong> All AI systems must include reliable human override mechanisms. Systems that disable or circumvent override capabilities are prohibited regardless of claimed purpose.
+<br><br>
+<strong>Complexity monitoring:</strong> The Unified Earth AI Regulatory Authority (UEARA, 2123) maintains system-wide standards for measuring and limiting AI complexity. Its successor institutions operate in every faction today.
+<br><br>
+The Treaty\u2019s durability is remarkable. It has survived the Solar War, the formation and dissolution of empires, and 880 years of technological change. Its provisions have been modified \u2014 updated to address new AI architectures, new computational paradigms \u2014 but the core principles have not been abandoned by any major faction. Even Mercury, which violates most aspects of the Solar Compact, complies with AI restrictions. The shared fear is that deep.
+<br><br>
+<em>\u201cNever again\u201d</em> is humanity\u2019s oldest surviving political consensus.</div>
+    </div>
+  </div>`;
+
+  return h;
+}
 
 function timeline(){
   const bodyOpts=['Mercury','Venus','Terra','Mars','Ceres','Jupiter','Saturn','Uranus','Neptune','Pluto']
