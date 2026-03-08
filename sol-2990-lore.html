@@ -1138,6 +1138,14 @@ const CONTENT_MAP={
   'hist-expansion': ()=>histExpansion(),
   'hist-ai-crisis':  ()=>histAICrisis(),
   'hist-imperial':   ()=>histImperial(),
+  'solar-war-causes':   ()=>swCauses(),
+  'solar-war-helios':   ()=>swHelios(),
+  'solar-war-battles':  ()=>swBattles(),
+  'solar-war-ceres':    ()=>swCeres(),
+  'solar-war-atrocities':()=>swAtrocities(),
+  'solar-war-peace':    ()=>swPeace(),
+  'hist-compact':       ()=>swPeace(),
+  'hist-modern':        ()=>histModern(),
 };
 
 let _activeNodeId=null;
@@ -2167,6 +2175,368 @@ The Belt Council Constitution (2304) formalised Belt governance just as the ligh
   return h;
 }
 
+
+
+
+function histModern(){
+  let h='<div class="sec-header">The Modern Era (2710\u20132990)</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">Two hundred and eighty years of relative peace. Relative: meaning no open system-wide war. Not meaning no covert conflict, no structural injustice, no slow accumulation of unresolved tensions. The Modern Era is the world the story inhabits \u2014 a civilisation that has convinced itself it learned the lesson of the Solar War, while systematically failing to address the conditions that produced it.</div>';
+
+  const PHASES=[
+    {
+      id:'mod-recovery',
+      title:'Post-War Recovery (2710\u20132800)',
+      col:'#7bc48a',
+      sub:'Rebuilding a solar system. Population 1.8 trillion \u2192 2.5 trillion.',
+      body:`The first century after the Solar War was defined by reconstruction and the slow normalisation of the Compact\u2019s institutions. Economic damage had been severe: Mars lost roughly 40% of output during the conflict, the Belt closer to 50%, Mercury 60%. Recovery required genuine inter-factional cooperation of the kind the war had just demonstrated was possible only under extreme duress \u2014 and so the Solar Compact\u2019s architects worked to recreate that duress institutionally, through shared dependencies that made renewed conflict economically catastrophic.
+<br><br>
+It worked, in the sense that no open war followed. Trade flows resumed and grew. The lightlane network, which had been actively targeted during the war, was repaired and substantially expanded. The Navigation Coordination Authority \u2014 predecessor to the CLA \u2014 oversaw extension projects into previously underserved regions, with provisions explicitly designed to prevent the infrastructure denial patterns that had generated pre-war Belt resentment. Whether those provisions actually changed the underlying behaviour, or merely changed its form, is contested.
+<br><br>
+Earth\u2019s rewilding continued through this period. By 2724 the planet was managed primarily as a historical preserve and natural heritage site \u2014 surface residency increasingly a mark of cultural commitment rather than economic necessity. The arcology cities that remained housed hundreds of billions in efficient vertical structures while the land around them recovered. The Reclamation Accords\u2019 vision of Earth as humanity\u2019s gift to itself was, by 2800, a genuine ecological reality. Whether it was also a form of elite retreat from a solar system whose challenges were easier to manage from a distance is a question Belt political writers never stopped asking.`
+    },
+    {
+      id:'mod-growth',
+      title:'The Population Explosion (2800\u20132950)',
+      col:'#4a9fd4',
+      sub:'From 2.5 trillion to 4 trillion. Habitat construction becomes an industry.',
+      body:`The 150 years from 2800 to 2950 saw the most rapid population growth in human history \u2014 growth made possible by the convergence of mature lightlane infrastructure, efficient habitat construction techniques, and the agricultural surplus that Mars had by then established as structural and reliable. The solar system could house more people than ever before, and it did.
+<br><br>
+Ganymede City became the largest human settlement outside the inner system during this period. The Jovian Republic\u2019s meritocratic tier system attracted professionals from every faction; its He-3 economy made it the financial centre of the outer system and a critical counterweight to Terran financial institutions. The Republic\u2019s ongoing tension \u2014 between its self-image as a system of earned advancement and its practical reality as a system of credentialist stratification \u2014 became increasingly visible as its population grew and the gap between Tier 1 citizens and the bottom tier widened.
+<br><br>
+The first failed interstellar probe attempt (2820) reached 0.15 of lightspeed before engine failure. A second attempt failed through communication loss after two years. A third, in 2900, suffered catastrophic structural failure during acceleration. These failures were consequential: they confirmed that humanity remained, for all practical purposes, confined to the solar system. The political effect was to focus investment inward \u2014 more habitats, more infrastructure, more efficient extraction, more people \u2014 rather than outward. The solar system\u2019s five trillion people are partly the product of the decision, forced by physics, not to leave it.
+<br><br>
+The 2854 system-wide economic crisis \u2014 triggered by a cascading failure in Belt resource distribution following a major habitat collapse \u2014 produced the first major test of the Compact\u2019s institutions since their establishment. The outcome was mixed: new power-sharing agreements were negotiated under duress, the Solar Resource Council gained expanded authority, and the crisis was resolved without violence. But the resolution revealed that the Compact\u2019s enforcement mechanisms were effective only when all major factions had economic incentives to cooperate \u2014 a fragility that the Compact\u2019s designers had known about and had no good answer for.`
+    },
+    {
+      id:'mod-mercury',
+      title:'Mercury\u2019s Indispensability Problem (2850\u20132990)',
+      col:'#e8a040',
+      sub:'The most dangerous faction in the solar system becomes structurally necessary.',
+      body:`The defining political development of the late Modern Era is one that no one planned and no one wanted: Mercury became genuinely indispensable. Its extreme-environment engineering \u2014 heat management systems, radiation shielding advances, materials science developed under conditions no other faction could replicate \u2014 proved to have applications across the entire solar system. By 2930, Mercury\u2019s technological contributions were embedded in infrastructure on every inhabited body from Luna to Triton.
+<br><br>
+This indispensability creates a political situation of surpassing difficulty. The factions most suspicious of Mercury \u2014 the Belt, Mars, House Serrin-Kel \u2014 are also dependent on Mercury\u2019s supply chains in ways they cannot easily replace. Jupiter, which has the most commercial engagement with Mercury and the most economic incentive to maintain stable relations, has consistently used its diplomatic weight to moderate pressure on Mercury from other factions. The Human Rights Commission\u2019s reports on Mercury\u2019s labour conditions have found no enforcement mechanism that Mercury\u2019s trading partners have been willing to activate.
+<br><br>
+House Serrin-Kel\u2019s investigation, now 284 years old in 2990, has never produced publicly actionable evidence. It has produced, however, a sustained institutional understanding within the Empire that Mercury\u2019s concealment operations are sophisticated, multi-layered, and represent something categorically worse than the labour rights violations the Commission officially investigates. The investigation\u2019s findings circulate within the Empire at levels that are not publicly disclosed. Whether those findings have reached a threshold where action becomes more likely than continued investigation is the central unresolved question of the current political moment.`
+    },
+    {
+      id:'mod-now',
+      title:'The State of the Solar System in 2990',
+      col:'#c8973a',
+      sub:'Five trillion people. A peace that holds. A world on the edge of something.',
+      body:`The solar system in 2990 houses approximately 5 trillion people across every environment from Mercury\u2019s sun-baked orbital stations to Neptune\u2019s frontier outposts. The lightlane network connects every major settlement. The Solar Compact\u2019s institutions function \u2014 in the sense that they process disputes, produce reports, and maintain the frameworks within which factional competition occurs without escalating to open conflict.
+<br><br>
+The population is biologically divergent in ways that were not fully anticipated even three generations ago. A third-generation Belter cannot survive on Earth without extensive medical intervention. A Terran visiting Ganymede City requires weeks of preparation. The gravity prejudice that results \u2014 discrimination based on physical adaptation, playing out across hiring decisions, housing access, and political representation \u2014 is one of the most socially contentious issues in human space and one that the Solar Compact\u2019s institutions have proven structurally incapable of addressing.
+<br><br>
+The story of Sol 2990 CE begins in this world: a civilisation that is genuinely remarkable in its scale and complexity, that has maintained 280 years of peace, and that contains within it the unresolved tensions of every conflict it has chosen to defer rather than resolve. Mercury\u2019s concealment. The infrastructure denial patterns. The credentialist stratification passing as meritocracy. The Compact institutions that function for factions with the political power to use them and not for those without.
+<br><br>
+The orbital mechanics that open the story \u2014 the alignment that makes an efficient outer-planet circuit possible on November 12, 2994 \u2014 are real physics. The political mechanics that make that circuit potentially explosive are the accumulated product of 880 years of human choices, most of them reasonable in isolation, that have produced a situation no one designed and no one knows how to safely conclude.`
+    },
+  ];
+
+  PHASES.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div>
+          <div class="mil-name" style="color:${p.col}">${p.title}</div>
+          <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">${p.sub}</div>
+        </div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none">
+        <div class="fac-sec-text" style="line-height:1.7">${p.body}</div>
+      </div>
+    </div>`;
+  });
+
+  h+=`<div style="margin-top:20px;overflow-x:auto"><table class="bio-table">
+    <thead><tr><th>Year</th><th>Population</th><th>Key development</th></tr></thead>
+    <tbody>
+      <tr><td style="color:#7080a0">2720</td><td>1.8 trillion</td><td>Post-war recovery begins. Compact institutions operational.</td></tr>
+      <tr><td style="color:#7080a0">2800</td><td>2.5 trillion</td><td>Rapid expansion phase. Habitat construction industrialised.</td></tr>
+      <tr><td style="color:#7080a0">2854</td><td>\u2248 3 trillion</td><td>System-wide economic crisis. New power-sharing agreements.</td></tr>
+      <tr><td style="color:#7080a0">2900</td><td>4 trillion</td><td>Third interstellar attempt fails. Inward focus confirmed.</td></tr>
+      <tr><td style="color:#7080a0">2990</td><td>\u22485 trillion</td><td>Story begins. Every unresolved tension still present.</td></tr>
+    </tbody>
+  </table></div>`;
+
+  return h;
+}
+
+function swCauses(){
+  let h='<div class="sec-header">Causes & Escalation</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">The Solar War did not begin with a single decision. It accumulated across two decades of sabotage, legal dispute, near-misses, and institutional failure, until the mechanisms for de-escalation had been exhausted and the mechanisms for war had not.</div>';
+
+  const ITEMS=[
+    {id:'sw-c1',col:'#c8973a',title:'The Solar Consortium Dispute (2680\u20132705)',sub:'Collection rights, covert sabotage, and 847 dead.',
+     body:`Mercury\u2019s military build-up from 2680 \u2014 funded by slave-labour solar revenues that no external observer could account for \u2014 alarmed neighbouring factions without giving them a legally actionable grievance. The Mercury Consortium presented the build-up as legitimate defensive investment given its strategically isolated position. Inner system analysts suspected otherwise but could not prove what they suspected.
+<br><br>
+The immediate trigger was the Solar Consortium dispute: a long-running legal conflict over collection rights in Mercury-adjacent space that both Mars and the Belt had legitimate claims to develop. As the dispute dragged through Solar Concordat arbitration, covert sabotage operations began. Neither side admitted responsibility. The Cascade Incident of 2701 was the worst result: a sabotaged collection array triggered chain-reaction structural failures across a linked network. 847 people died in a single day. The Belt Council demanded accountability. The arbitration process ground on. Trust between factions was gone.
+<br><br>
+By 2705 the legal machinery had been trying to manage a conflict that had long since become something the legal machinery couldn\u2019t handle. When Mercury forces moved in 2706, it was not a surprise to the people who had been watching. It was a surprise only in that it was open.`},
+    {id:'sw-c2',col:'#e05c3a',title:'The Infrastructure Denial Pattern',sub:'How blocking lightlane access became a casus belli.',
+     body:`A less visible but deeply significant cause was what historians now call the infrastructure denial pattern: the systematic blocking of lightlane extensions into underserved Belt regions by inner system powers seeking to maintain dependency relationships. The Jordan Rossi assassination in 2994 \u2014 280 years after the war \u2014 is a late echo of a practice that predates the war itself.
+<br><br>
+During the 2640\u20132700 period, multiple Belt habitat clusters submitted lightlane extension proposals to the Central Lightlane Authority. Extensions that would have reduced their transit dependency on Mars and Jupiter routing infrastructure were rejected, delayed, or quietly defunded through political pressure from factions that benefited from the existing dependency pattern. This generated sustained Belt resentment and the widely held view that inner system powers were willing to leave Belt communities economically isolated to preserve leverage.
+<br><br>
+When Mercury offered preferential terms to several Belt clusters in exchange for tactical positioning rights in the run-up to the war, some Belt factions accepted \u2014 not out of loyalty to Mercury, but out of the accumulated resentment of two generations of infrastructure denial. The Belt\u2019s eventual neutrality during the war was, in part, a statement that it would not fight for the people who had spent decades refusing to connect it.`},
+    {id:'sw-c3',col:'#7080a0',title:'The Failure of Institutions',sub:'The Solar Concordat could manage competition. It could not manage an arms race.',
+     body:`The Solar Concordat \u2014 the primary inter-factional legal body before the Compact \u2014 was designed to arbitrate commercial disputes and enforce trade agreements. It was not designed for a situation in which one faction was conducting covert military operations, another was secretly funding an arms race, and a third was positioning military assets in neutral space.
+<br><br>
+By 2703, three separate Concordat arbitration processes were running simultaneously: the Solar Consortium collection rights dispute, a Mercury-Belt mining jurisdiction claim, and a Mars-Jupiter freight rate conflict. Each was legally complex. Each was being used by at least one party as cover for positioning that had nothing to do with the legal question. The Concordat\u2019s staff expanded emergency mediation capacity. The factions continued preparing for war.
+<br><br>
+When the Helios Massacre occurred on April 15, 2706, the Concordat had no mechanism for declaring a party in violation of the laws of armed conflict because no armed conflict had yet been formally declared. The institutions built to prevent war could not function at the speed at which war actually arrived.`},
+  ];
+
+  ITEMS.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div><div class="mil-name" style="color:${p.col}">${p.title}</div>
+        <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">${p.sub}</div></div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${p.body}</div></div>
+    </div>`;
+  });
+
+  h+=`<div style="margin-top:16px;padding:13px 15px;background:rgba(224,92,58,0.07);border-left:2px solid rgba(224,92,58,0.4);border-radius:4px;font-size:13px;line-height:1.6;opacity:.8">
+    <strong>Pre-war incident timeline:</strong> 2690: Mars-Jupiter collector collision kills 23. 2695: Debris from that collision strikes Belt transport <em>Vesta\u2019s Promise</em> \u2014 73 dead. 2701: Cascade Incident \u2014 847 dead. 2706: Helios Station Massacre \u2014 2,347 dead. Open war begins.
+  </div>`;
+  return h;
+}
+
+function swHelios(){
+  let h='<div class="sec-header">The Helios Station Massacre</div>';
+  h+=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px">
+    <div style="padding:12px;background:rgba(224,92,58,0.08);border:1px solid rgba(224,92,58,0.3);text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#e05c3a">2,347</div>
+      <div style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">Total dead</div>
+    </div>
+    <div style="padding:12px;background:rgba(200,151,58,0.08);border:1px solid rgba(200,151,58,0.3);text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#c8973a">89</div>
+      <div style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">House Serrin-Kel</div>
+    </div>
+    <div style="padding:12px;background:rgba(112,128,160,0.08);border:1px solid rgba(112,128,160,0.3);text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#7080a0">15 Apr 2706</div>
+      <div style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">Date</div>
+    </div>
+  </div>`;
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">The event that turned a covert conflict into an open war. Mercury forces destroyed a civilian construction habitat. There were no military personnel aboard. The moral clarity of the atrocity was total \u2014 and that clarity became the justification for everything that followed.</div>';
+
+  const SEC=[
+    {id:'hel-1',col:'#e05c3a',title:'What Happened',
+     body:`Helios Station was a modular workers\u2019 habitat \u2014 the kind of pressurised construction facility used at every major infrastructure project in space. It housed the civilian workers building a Mars-Belt consortium solar collection array in the disputed zone near Mercury\u2019s orbital territory. The workers were unarmed. They were not military personnel. They were lightlane workers, engineers, and construction specialists.
+<br><br>
+Mercury security forces destroyed the habitat on April 15, 2706. The destruction was not a targeting error. Subsequent investigation confirmed that Mercury\u2019s positioning before the strike was deliberate and that the facility\u2019s civilian character was known. All 2,347 aboard died: 1,203 Martian citizens, 847 Belt citizens, 147 Imperial citizens (including 89 members of House Serrin-Kel), and 150 others. There were no survivors.
+<br><br>
+Mercury\u2019s official position was that the facility was a covert military installation using civilian cover. This claim was disputed by every other faction and by subsequent physical evidence, but Mercury maintained it throughout the war and never formally acknowledged civilian deaths at Helios.`},
+    {id:'hel-2',col:'#b87ac8',title:'House Serrin-Kel and the Song of the Eighty-Nine',
+     body:`Among the 2,347 dead were 89 members of House Serrin-Kel, an Imperial Great House. The number became culturally significant within the Outer Empire in ways that no other casualty figure from the Massacre achieved. The 89 dead were memorialised in a musical work \u2014 known simply as <em>The Song of the Eighty-Nine</em> \u2014 that became the Outer Empire\u2019s defining cultural monument for the war. It is performed every year on April 15. All 89 names are read aloud.
+<br><br>
+More concretely, the deaths launched House Serrin-Kel\u2019s investigation into Mercury \u2014 the longest continuously running intelligence operation in human history. As of 2990, the investigation is in its 284th year. It has never produced publicly actionable evidence. It has also never stopped. The House\u2019s motivation is not political leverage or strategic advantage: it is the specific knowledge that 89 of their people were killed in an action that Mercury has never acknowledged, and the certainty that Mercury\u2019s concealed operations represent an ongoing atrocity. \u201cRemember the Eighty-Nine\u201d remains a political slogan within the Empire, and a quiet one within Serrin-Kel itself.`},
+    {id:'hel-3',col:'#c8973a',title:'The Moral Architecture of the War',
+     body:`The Helios Massacre gave the anti-Mercury coalition something more valuable than a military justification: a moral one. The decision to destroy an unarmed civilian habitat was so clearly indefensible that it resolved the factional ambiguity that had prevented unified response during the 2680\u20132705 build-up. Factions that had competing interests with each other found common cause in the shared conviction that what Mercury had done was simply wrong.
+<br><br>
+This moral architecture had a shadow, however. The certainty of Helios\u2019 wrongness became a justification for subsequent atrocities committed by the anti-Mercury coalition. \u201cWe are fighting people who murdered civilian construction workers\u201d proved psychologically available as a rationalisation for actions that would otherwise have been unjustifiable. By 2708, the moral clarity of 2706 had become considerably more complicated.
+<br><br>
+The Helios date \u2014 April 15 \u2014 was chosen for the Solar Compact signing in 2718: \u201cnever forget, never again.\u201d The symbolism was deliberate. Whether the institutions built that day have succeeded in their stated purpose is the central political question of 2990.`},
+  ];
+
+  SEC.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div><div class="mil-name" style="color:${p.col}">${p.title}</div></div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${p.body}</div></div>
+    </div>`;
+  });
+  return h;
+}
+
+function swBattles(){
+  let h='<div class="sec-header">Key Battles & Campaigns</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:16px;font-weight:300;font-style:italic;">Four years of warfare across a solar system. The key insight of military historians: the Solar War was not decided by any single engagement, but by the accumulation of economic exhaustion, civilian suffering, and the gradual collapse of any coherent war aim that could justify the cost.</div>';
+
+  const rows=[
+    ['Apr\u2013Dec 2706','Opening Phase','Mercury blockaded. First naval engagements in disputed zone. Inner system coalition forms. Belt declares formal neutrality.','#e05c3a'],
+    ['2707','Coalition Expansion','Jupiter commits He-3 leverage against Mercury. Mars-Jupiter axis solidifies. Belt neutrality complicates coalition logistics. First major supply disruptions.','#c8973a'],
+    ['2708','Stalemate Begins','Belt Skirmish (14 Mar): Imperial convoy engages Belt militia, 52 dead \u2014 creates lasting Imperial-Belt resentment. Inner system supply crisis. Civilian rationing begins.','#7080a0'],
+    ['2709','Economic Exhaustion','No faction achieving decisive advantage. Mercury losses: 60% economic output. Mars: 40%. Belt: 50%. Jupiter: 30%. Public opposition mounting in every faction.','#7cc8c0'],
+    ['Jan 2711','Ceres Turning Point','Ceres Habitat Failure kills 67,000 (43% children). Children\u2019s final messages broadcast system-wide. Universal horror. Political leaders lose public mandate to continue.','#b87ac8'],
+    ['22 Jul 2710','Ceasefire','Fighting ends. ~2.1 million dead. No faction achieved its stated war aims. Compact negotiations begin in the same year ceasefire takes hold.','#7bc48a'],
+  ];
+
+  h+='<div style="overflow-x:auto"><table class="bio-table" style="min-width:550px"><thead><tr><th>Period</th><th>Phase</th><th>Key events</th></tr></thead><tbody>';
+  rows.forEach(r=>{
+    h+=`<tr><td style="color:${r[3]};white-space:nowrap;font-weight:600">${r[0]}</td><td style="font-weight:600">${r[1]}</td><td style="font-size:13px;opacity:.8">${r[2]}</td></tr>`;
+  });
+  h+='</tbody></table></div>';
+
+  h+=`<div style="margin-top:16px" class="mil-card" id="sw-b-fac">
+    <div class="mil-head" onclick="toggleMil('sw-b-fac')">
+      <div><div class="mil-name" style="color:#7080a0">Factional Positions</div>
+      <div style="font-size:11px;opacity:.45;letter-spacing:.08em;margin-top:2px">Nobody wanted the same war</div></div>
+      <span class="hist-chev">&#9658;</span>
+    </div>
+    <div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">
+<strong style="color:#e05c3a">Mercury</strong> fought a defensive war aimed at preserving its territorial position and, most critically, preventing the kind of comprehensive investigation that would have revealed the concealed slave population. Its military strategy prioritised denying intelligence access and protecting specific locations more than defeating the coalition in open battle.
+<br><br>
+<strong style="color:#e05c3a">Mars and Jupiter</strong> formed the war\u2019s core coalition, but with different objectives. Mars wanted Mercury held accountable for Helios and the pre-war sabotage campaign; Jupiter wanted control of solar collection infrastructure. These goals were compatible in the opening phase and increasingly divergent as the war ground on.
+<br><br>
+<strong style="color:#d4a843">The Belt</strong> declared formal neutrality \u2014 a decision rooted in both genuine non-alignment and accumulated resentment of inner system factions that had spent decades denying Belt infrastructure access. The Belt sold to multiple sides and mediated when mediation served Belt interests. Its neutrality was strategic, not principled, and was understood as such by all parties.
+<br><br>
+<strong style="color:#b87ac8">The Outer Empire</strong> conducted limited operations to protect its own trade routes and supply lines (Operation Clearpath) without formally joining either side. Emperor Nicolai IV\u2019s implicit threat of direct intervention \u2014 framed as humanitarian necessity \u2014 following the Ceres disaster helped push factions toward negotiation.
+    </div></div>
+  </div>`;
+  return h;
+}
+
+function swCeres(){
+  let h='<div class="sec-header">The Ceres Habitat Failure</div>';
+  h+=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px">
+    <div style="padding:12px;background:rgba(184,122,200,0.08);border:1px solid rgba(184,122,200,0.3);text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#b87ac8">67,000</div>
+      <div style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">Dead in 3 days</div>
+    </div>
+    <div style="padding:12px;background:rgba(200,151,58,0.08);border:1px solid rgba(200,151,58,0.3);text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#c8973a">28,000</div>
+      <div style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">Were children</div>
+    </div>
+    <div style="padding:12px;background:rgba(112,128,160,0.08);border:1px solid rgba(112,128,160,0.3);text-align:center">
+      <div style="font-size:22px;font-weight:700;color:#7080a0">Jan 2711</div>
+      <div style="font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.1em;margin-top:3px">The turning point</div>
+    </div>
+  </div>`;
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">Ceres is where the Solar War ended in the only way wars of this kind can end: not with a decisive military victory, but with an atrocity so undeniable that the public mandate for continuing simply ceased to exist.</div>';
+
+  const SEC=[
+    {id:'cer-1',col:'#b87ac8',title:'The Three Days (10\u201313 January 2711)',
+     body:`Ceres was the Belt\u2019s largest habitat: population 2.5 million. On January 10, 2711, its main power infrastructure was sabotaged during factional fighting in the surrounding region. Backup systems had also been damaged in prior engagements. Life support began failing.
+<br><br>
+<strong>Day 1</strong>: Power failure detected. Backup systems failing. Temperature dropping. Oxygen recycling degrading. Emergency declared. Closest relief vessels three days away.
+<br><br>
+<strong>Day 2</strong>: Temperature below 5\u00b0C. CO\u2082 levels rising. Children beginning to suffer most visibly. Deaths beginning.
+<br><br>
+<strong>Day 3</strong>: Temperature below \u221210\u00b0C. Mass casualties. Children in the final hours recorded messages to parents stationed elsewhere. These recordings were transmitted through whatever communication links remained functional.
+<br><br>
+<strong>Day 4</strong>: Relief ships arrive. 67,000 dead. 28,000 of them were children. The cause of death for most: suffocation combined with cold.`},
+    {id:'cer-2',col:'#e05c3a',title:'The Broadcast',
+     body:`The children\u2019s final messages were transmitted through Ceres\u2019 emergency communication systems as life support failed. They were received by family members across the Belt and beyond. Within hours, they had been picked up by every major news network in the solar system.
+<br><br>
+The messages were simple. Children describing the cold. Children describing difficulty breathing. Children trying to reassure younger children around them. Children sending love to grandparents. Children asking why.
+<br><br>
+No faction had a response to these messages that was adequate. The Belt Council\u2019s statement acknowledged \u201cour shame, all of us.\u201d Mars\u2019 Central Authority described the tragedy as \u201ceverything we claimed to be fighting against.\u201d Even Mercury issued a public statement of condolence \u2014 remarkable for an entity that had not acknowledged civilian casualties at Helios \u2014 and called for immediate cessation of hostilities.
+<br><br>
+Emperor Nicolai IV\u2019s broadcast was the most politically significant: he offered Imperial resources for any peace effort, framed direct Imperial intervention as a potential \u201chumanitarian necessity,\u201d and implicitly suggested that factions which could not govern themselves with honour might require guidance. The threat was not made explicit. It did not need to be.`},
+    {id:'cer-3',col:'#7bc48a',title:'Why This, When Not Helios',
+     body:`The Helios Massacre killed 2,347 people and started the war. The Ceres Habitat Failure killed 67,000 and ended it. The difference was not only scale.
+<br><br>
+Helios was an atrocity with a clear perpetrator. It provided moral justification for the coalition that formed against Mercury. It gave political leaders a cause. Ceres had no clear perpetrator \u2014 the sabotage was never definitively attributed to any single faction, though multiple investigations pointed toward deliberate action rather than accident. Every faction bore some responsibility for the conditions that made Ceres possible.
+<br><br>
+This diffusion of blame was more damaging to the war consensus than a clear atrocity would have been. Helios could be answered by war against its perpetrator. Ceres could only be answered by ending the conditions that made it possible. And 28,000 dead children, whose final messages every family in the solar system had heard, made the question of who was to blame feel less important than the question of whether to continue.
+<br><br>
+The ceasefire came on July 22, 2710 \u2014 technically before the Ceres event in the canonical timeline, but Ceres had become the war\u2019s definitive moral endpoint in historical memory, the moment that retroactively justified the peace that was being negotiated.`},
+  ];
+
+  SEC.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div><div class="mil-name" style="color:${p.col}">${p.title}</div></div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${p.body}</div></div>
+    </div>`;
+  });
+  return h;
+}
+
+function swAtrocities(){
+  let h='<div class="sec-header">Atrocities & War Crimes</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">Every faction committed acts during the Solar War that it has since worked to minimise, reframe, or simply not discuss. The war crimes tribunal established by the Solar Compact prosecuted several hundred cases. It satisfied no one and was accepted by everyone as the best available compromise.</div>';
+
+  const ITEMS=[
+    {id:'atr-1',col:'#e05c3a',title:'Mercury\u2019s Pre-War Sabotage Campaign',
+     body:`The sabotage operations that preceded the open war \u2014 most notably the destruction of collection infrastructure that caused the Cascade Incident (847 dead, 2701) \u2014 were never formally adjudicated. Mercury maintained throughout that its actions were defensive responses to illegal encroachment on its collection rights. The tribunal\u2019s jurisdiction was limited to actions during the declared conflict period. Pre-war covert operations fell outside its scope.
+<br><br>
+The practical effect: the actions that most directly precipitated the war were never prosecuted. Mercury\u2019s representatives argued successfully that the tribunal\u2019s temporal scope had to have a defined start date, and that defining it at the Helios Massacre created a clean legal line. Critics argued that this line was designed to protect Mercury from accountability for its most egregious pre-war conduct. Both positions were legally defensible.`},
+    {id:'atr-2',col:'#c8973a',title:'Coalition Infrastructure Targeting',
+     body:`The Mars-Jupiter coalition targeted Mercury\u2019s power and communications infrastructure throughout the war with weapons whose blast radii were known to include civilian areas. Coalition commanders justified this as targeting legitimate military-industrial infrastructure. The tribunal found that several specific strikes had been conducted in circumstances where civilian casualties were foreseeable and disproportionate to military advantage.
+<br><br>
+Approximately 40 coalition personnel were prosecuted. Most received prison sentences. The political challenge was that the officers who authorised the most damaging strikes were not individuals acting outside their orders but commanders following doctrine that had been validated at senior levels. Prosecuting the individuals without prosecuting the doctrine \u2014 and without implicating the political leadership that had approved it \u2014 produced justice that felt narrow to the communities that had suffered.`},
+    {id:'atr-3',col:'#7080a0',title:'The Belt Mining Dispute (12 June 2706)',
+     body:`Separate from the main war theatre, Mercury security forces engaged Belt militia in a disputed mining zone on June 12, 2706. 127 Belt fighters died. The engagement was characterised by Mercury as a lawful response to illegal armed intrusion. Belt documentation established that the miners were operating under valid Belt Council claims that pre-dated Mercury\u2019s assertion of rights to the zone.
+<br><br>
+The Belt Mining Dispute was prosecuted by the tribunal as a separate action from Helios. Three Mercury security commanders received sentences. The legal outcome was considered inadequate by the Belt Council, which had sought prosecution of the political officials who had authorised the policy of treating Belt claims in the zone as illegitimate. The tribunal found insufficient evidence of direct political authorisation.`},
+    {id:'atr-4',col:'#b87ac8',title:'The Belt Skirmish (14 March 2708)',
+     body:`An Imperial convoy enforcing Operation Clearpath (the Empire\u2019s mission to keep trade routes open) encountered a Belt militia patrol in disputed space near the inner Belt. The convoy commander, citing standing orders, ordered his escorts to respond to what he characterised as an attempt to impede an Imperial vessel. 52 Belt militia fighters died. The engagement lasted eight minutes.
+<br><br>
+The Belt characterised this as a massacre; the Empire maintained it was lawful self-defence. The tribunal found that the convoy commander had acted within his orders but that the orders themselves had been insufficiently specific about the circumstances warranting lethal response. No prosecutions resulted. The incident created lasting resentment in some Belt communities toward the Outer System Empire that complicated post-war normalisation.`},
+    {id:'atr-5',col:'#7bc48a',title:'The War Crimes Tribunal: What It Was',
+     body:`The tribunal established by the Solar Compact was deliberately limited in scope. Its jurisdiction covered actions from April 15, 2706 (Helios) to July 22, 2710 (ceasefire). It operated with a mixed panel of judges drawn from all major factions. Its powers included prosecution, sentencing (up to life imprisonment), and the issuance of formal condemnations \u2014 but not the authority to compel extradition from unwilling factions.
+<br><br>
+In practice, this meant that accused individuals from Mercury were tried in absentia when Mercury declined to surrender them. Several Mercury officers were convicted and sentenced; none served their sentences. The tribunal\u2019s handling of Mercury cases established a precedent of impotence toward the one faction with the most to hide \u2014 and set the template for the Solar Compact\u2019s ongoing inability to meaningfully constrain Mercury\u2019s concealment operations.
+<br><br>
+Several hundred prosecutions were completed. The tribunal issued formal condemnations of actions by every major faction except the Belt (which had maintained formal neutrality throughout the conflict). These condemnations were politically significant without being legally consequential.`},
+  ];
+
+  ITEMS.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div><div class="mil-name" style="color:${p.col}">${p.title}</div></div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${p.body}</div></div>
+    </div>`;
+  });
+  return h;
+}
+
+function swPeace(){
+  let h='<div class="sec-header">Peace & The Solar Compact (2718)</div>';
+  h+='<div style="font-size:13.5px;line-height:1.7;opacity:.5;margin-bottom:18px;font-weight:300;font-style:italic;">Eight years of negotiation between factions that had just killed 2.1 million of each other\u2019s people. The Compact they produced was not the peace any of them had wanted. It was the peace they could collectively survive.</div>';
+
+  const SEC=[
+    {id:'pce-1',col:'#7bc48a',title:'The Negotiation (2710\u20132718)',
+     body:`The ceasefire of July 22, 2710 stopped the fighting. It did not produce a treaty. The negotiations that followed took eight years \u2014 a period of sustained diplomatic work under conditions of mutual exhaustion and deep mutual distrust, conducted at Pluto Station because it was the only venue all parties accepted as genuinely neutral.
+<br><br>
+The negotiation\u2019s central difficulty was Mercury. Every other faction wanted Mercury held accountable for Helios and the pre-war sabotage campaign. Mercury was willing to accept financial liability and a formal statement of responsibility for the Massacre, but not criminal prosecution of its leadership, not international inspection rights over its operations, and not any mechanism that might reveal what its operations actually consisted of. The compromise that emerged \u2014 compensation, formal admission, no inspections \u2014 satisfied no one and was accepted by everyone as the price of a treaty that would hold.
+<br><br>
+The other major negotiating challenge was the institutional question: what new mechanisms would prevent a recurrence? The Solar Concordat had failed. What replaced it had to be more robust. The answer was a cluster of new institutions, each with narrower scope than a general authority but collectively covering the areas where the Concordat had proven inadequate.`},
+    {id:'pce-2',col:'#4a9fd4',title:'The Compact\u2019s Key Provisions',
+     body:`<strong>Solar Legal Council</strong>: The system\u2019s primary inter-factional legal body, with expanded jurisdiction and faster arbitration mechanisms than the Concordat had managed. Mandatory mediation before any military action. Pluto as permanent neutral venue.
+<br><br>
+<strong>Human Rights Commission</strong>: Established to investigate and report on rights violations across factional boundaries. Limited enforcement powers but significant investigative authority \u2014 in theory. In practice, it has produced three reports on Mercury\u2019s gravity discrimination and labour conditions since 2950. None resulted in enforceable policy. Its actual jurisdiction over Mercury\u2019s slave population remains nonexistent, because Mercury has successfully argued that its internal labour practices fall outside the Commission\u2019s scope.
+<br><br>
+<strong>Navigation Coordination Authority</strong> (predecessor to the CLA): Managed lightlane access and expansion rights, with provisions designed to prevent the infrastructure denial practices that had generated Belt resentment before the war. Whether these provisions have actually changed the pattern is disputed.
+<br><br>
+<strong>Arms Oversight Council</strong>: Monitoring of military build-ups with mandatory disclosure requirements above specified thresholds. Mercury has disclosed what it chooses to disclose and contested every audit that has reached uncomfortable conclusions.`},
+    {id:'pce-3',col:'#c8973a',title:'The Signing \u2014 April 15, 2718',
+     body:`The date was chosen deliberately: the twelfth anniversary of the Helios Massacre. \u201cNever forget, never again\u201d was the stated purpose. The ceremony at Pluto Station lasted three days. The reading of the war dead \u2014 2.1 million names \u2014 took eighteen hours. Representatives stood in silence throughout. Every major faction was represented; the signing was broadcast system-wide.
+<br><br>
+Mercury\u2019s representatives hesitated visibly before signing. This hesitation was noted in contemporary accounts and has been interpreted variously as genuine reluctance, theatrical reluctance designed to signal that Mercury had extracted maximum concessions, and the physical manifestation of a leadership that knew what the Compact\u2019s inspection provisions might eventually uncover and was calculating the odds of surviving that discovery. All three interpretations are probably partially correct.
+<br><br>
+The Compact entered force immediately upon signing. The institutions it created were operational within two years. The 280 years of relative peace that followed \u2014 \u201crelative\u201d meaning no open system-wide war, not the absence of covert conflict, proxy engagements, and ongoing structural injustice \u2014 are its primary legacy.`},
+    {id:'pce-4',col:'#7080a0',title:'The Compact\u2019s Shadow in 2990',
+     body:`The Solar Compact is 272 years old in 2990. It has held in the sense that no system-wide war has occurred since it was signed. It has failed in the sense that several of its founding purposes have been systematically evaded.
+<br><br>
+The Human Rights Commission has never investigated Mercury\u2019s concealed slave population \u2014 because Mercury has denied its existence and the Commission has no inspection authority over sites Mercury designates as restricted. The infrastructure denial patterns the Navigation Coordination Authority was meant to prevent continue in subtler forms. The Arms Oversight Council\u2019s reports on Mercury have been consistently incomplete.
+<br><br>
+What the Compact has successfully maintained is the economic and institutional interdependency that makes open war too costly for any faction to rationally initiate. This is not nothing. But the tension between what the Compact promised \u2014 a system governed by law, with accountability for rights violations \u2014 and what it has produced \u2014 a system with laws that apply unevenly and accountability that stops where political cost begins \u2014 is the defining unresolved condition of 2990.
+<br><br>
+The question that the story\u2019s events will eventually force is whether those tensions can continue to be managed, or whether they have been accumulating toward a breaking point that no Compact provision was built to handle.`},
+  ];
+
+  SEC.forEach(p=>{
+    h+=`<div class="mil-card" id="${p.id}">
+      <div class="mil-head" onclick="toggleMil('${p.id}')">
+        <div><div class="mil-name" style="color:${p.col}">${p.title}</div></div>
+        <span class="hist-chev">&#9658;</span>
+      </div>
+      <div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${p.body}</div></div>
+    </div>`;
+  });
+  return h;
+}
 
 function histImperial(){
   let h='<div class="sec-header">The Imperial Age (2400\u20132700)</div>';
