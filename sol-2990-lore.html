@@ -151,23 +151,7 @@ header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;ba
         </div>
         <div id="nav-list">
           <div id="lore-tree-root"></div>
-          <div id="nav-char-sep"></div>
-          <div id="nav-char-section">
-            <div class="nav-char-head" onclick="toggleCharSection()">
-              <span>◈ Characters</span>
-              <span class="nav-char-arrow" id="nav-char-arr">▶</span>
-            </div>
-            <div id="nav-char-items">
-              <button class="nav-item" onclick="openCharById('tomas')">Tomas Reyes</button>
-              <button class="nav-item" onclick="openCharById('nara')">Nara Elani</button>
-              <button class="nav-item" onclick="openCharById('soren')">Soren Abel</button>
-              <button class="nav-item" onclick="openCharById('obaire')">Lt. Davin O'Baire</button>
-              <button class="nav-item" onclick="openCharById('char-marcus')">Marcus Chen</button>
-              <button class="nav-item" onclick="openCharById('char-venna')">Venna Rossi</button>
-              <button class="nav-item" onclick="openCharById('char-anton')">Anton Nishida</button>
-            </div>
-          </div>
-        </div>
+                  </div>
       </div>
       <!-- Right: content -->
       <div id="tab-content"></div>
@@ -2154,24 +2138,154 @@ const CONTENT_MAP={
   h+='<div class="fac-sec-text" style="line-height:1.75;margin-bottom:20px">House Saelven was destroyed in 2989. It had been a Great House for six centuries. The destruction — stripping of charter, redistribution of territory, exile or execution of senior house members — followed the house\'s overreach in succession positioning: Saelven bet on a succession outcome that the Sovereign had not authorised and moved too openly to influence it. The response was designed to be visible. The Empire periodically needs to demonstrate that the succession system\'s rules are enforced, because a system that everyone believes they can game without consequence degenerates into open conflict. Saelven\'s destruction was an institutional reminder. The system has been quieter since.</div>';
   return h;
 },
-  'characters': ()=>comingSoon('characters'),
-  'char-pov': ()=>comingSoon('char-pov'),
-  'char-nara': ()=>comingSoon('char-nara'),
-  'char-tomas': ()=>comingSoon('char-tomas'),
-  'char-soren': ()=>comingSoon('char-soren'),
-  'char-venna': ()=>comingSoon('char-venna'),
-  'char-anton': ()=>comingSoon('char-anton'),
-  'char-davin': ()=>comingSoon('char-davin'),
-  'char-marcus': ()=>comingSoon('char-marcus'),
-  'char-supporting': ()=>comingSoon('char-supporting'),
-  'char-eliza': ()=>comingSoon('char-eliza'),
-  'char-jordan': ()=>comingSoon('char-jordan'),
-  'char-narafather': ()=>comingSoon('char-narafather'),
-  'char-historical': ()=>comingSoon('char-historical'),
-  'char-hist-overview': ()=>comingSoon('char-hist-overview'),
-  'char-kantaro': ()=>comingSoon('char-kantaro'),
-  'char-nazari': ()=>comingSoon('char-nazari'),
-  'char-chen-hist': ()=>comingSoon('char-chen-hist'),
+  'characters': ()=>characters(),
+  'char-pov': ()=>characters(),
+  'char-nara':  ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='nara')),
+  'char-tomas': ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='tomas')),
+  'char-soren': ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='soren')),
+  'char-davin': ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='obaire')),
+  'char-venna': ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='venna')),
+  'char-anton': ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='anton')),
+  'char-marcus': ()=>_charPageHTML(CHAR_DATA.find(c=>c.id==='marcus-chen')),
+  'char-supporting': ()=>{
+    const fc='#c8973a';
+    return `<div class="sec-header">Supporting Characters</div>
+<p class="note">Key figures who shape the POV arcs without carrying their own chapters. Each is fully developed within the world — they simply don't provide the primary narrative lens.</p>
+<div class="char-card" style="cursor:pointer" onclick="openLoreNode('char-eliza')"><div class="char-stripe" style="background:${FC.Belt}"></div><div style="flex:1"><div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px"><div class="char-name">Eliza Okafor</div></div><div class="char-role" style="color:${FC.Belt}">Independent Commodities Trader — Ceres Station</div><div class="char-desc" style="margin-top:7px;font-style:italic;color:rgba(200,151,58,0.75);">&#8220;She made the trades. She doesn't yet know exactly what she made them on.&#8221;</div></div><div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>
+<div class="char-card" style="cursor:pointer" onclick="openLoreNode('char-jordan')"><div class="char-stripe" style="background:${FC.Jupiter}"></div><div style="flex:1"><div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px"><div class="char-name">Jordan Rossi</div></div><div class="char-role" style="color:${FC.Jupiter}">CLA Lightlane Array Constructor — deceased</div><div class="char-desc" style="margin-top:7px;font-style:italic;color:rgba(200,151,58,0.75);">&#8220;His death is the event that sets everything else in motion.&#8221;</div></div><div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>
+<div class="char-card" style="cursor:pointer" onclick="openLoreNode('char-narafather')"><div class="char-stripe" style="background:${FC.Mars}"></div><div style="flex:1"><div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px"><div class="char-name">Nara's Father</div></div><div class="char-role" style="color:${FC.Mars}">Atmospheric Maintenance Worker — Sector 19, Valles Marineris</div><div class="char-desc" style="margin-top:7px;font-style:italic;color:rgba(200,151,58,0.75);">&#8220;Good.&#8221;</div></div><div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>
+<div class="ph-footer">Supporting cast — Sol 2990 CE</div>`;
+  },
+  'char-eliza': ()=>{
+    const fc=FC.Belt;
+    return `<div class="tp-back" onclick="openLoreNode('char-supporting')">&#8592; Supporting Characters</div>
+<div style="border-left:3px solid ${fc};padding-left:14px;margin-bottom:16px;">
+<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:${fc};letter-spacing:.04em;margin-bottom:3px;">Eliza Okafor</div>
+<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">Independent Commodities Trader — Ceres Station</div>
+<div style="font-size:14px;font-style:italic;color:rgba(200,151,58,0.8);line-height:1.5;margin-bottom:8px;">&#8220;She made the trades. She doesn't yet know exactly what she made them on.&#8221;</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(${hexRgb(fc)},0.35);color:${fc};">Belt Confederation</span><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">Supporting Character</span></div></div>
+<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">Tomas Reyes's business partner at Ceres Station. Where Tomas is reserved and analytical, Eliza is direct, energetic, and better at reading people than markets. Together they form a trading operation that works precisely because they cover different ground. She executed the three trades on Tomas's compressed message — the trades that are now forensically damaging — and she did it without knowing exactly what she was trading on. When she works out the timing, it won't sit right.</div>
+<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Location</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Ceres Station, Belt</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Background</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Belt-born, Ceres-based</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Role in arc</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Partner, potential POV</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Language</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Belt Creole, native speaker</div></div>
+</div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Partnership</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">The Okafor-Reyes operation works because they complement without overlapping. Eliza handles the relationships — the community trust that Belt trading depends on, the conversations in docking lounges and cooperative council meetings, the reputation maintenance that gives them access to deals before they're public. Tomas handles the pattern analysis. She is not his people-facing front; she is genuinely better at the human side. He is not her analytical backup; he is genuinely better at the data. It is an honest partnership, which is what makes his lie about Rossi a real problem rather than a procedural one.</div></div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Trades She Made</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">When the compressed message arrived, she read it and started executing. This is what they do — when one sees something, the other moves. She didn't ask what he was looking at. The shorthand was clear enough to trade on. The positions she opened are now timestamped in the system, attached to her identity, prior to any public knowledge of Rossi's death. She executed them correctly and competently. She did not know she was trading on foreknowledge of a murder. She suspects she probably was.</div></div>
+<div class="ph-footer" style="margin-top:16px;">Supporting character — Sol 2990 CE &middot; Potential POV character in later books</div>`;
+  },
+  'char-jordan': ()=>{
+    const fc=FC.Jupiter;
+    return `<div class="tp-back" onclick="openLoreNode('char-supporting')">&#8592; Supporting Characters</div>
+<div style="border-left:3px solid ${fc};padding-left:14px;margin-bottom:16px;">
+<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:${fc};letter-spacing:.04em;margin-bottom:3px;">Jordan Rossi</div>
+<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">CLA Lightlane Array Constructor — deceased, c. 2993 CE</div>
+<div style="font-size:14px;font-style:italic;color:rgba(200,151,58,0.8);line-height:1.5;margin-bottom:8px;">&#8220;He built connections between places that had none. That's why he had to die.&#8221;</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(${hexRgb(fc)},0.35);color:${fc};">Jupiter / CLA</span><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">Deceased — Key Figure</span></div></div>
+<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">Jordan Rossi does not appear in the story. He is already dead when the narrative begins. His presence is felt through his daughter Venna, through the economic and political consequences of his project's collapse, and through Tomas Reyes's testimony — which omits the part where Tomas watched him die. He is the Franz Ferdinand of this story's opening crisis: not the most powerful figure, not the most famous, but the one whose death, in this moment, pulls everything else apart.</div>
+<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Affiliation</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Central Lightlane Authority</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Daughter</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Venna Rossi (Io, age 17)</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Death</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Assassination, c. 2993 CE</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Official ruling</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Construction accident</div></div>
+</div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Project</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">Rossi was pushing a lightlane extension into an underserved Belt region — a project that would have reduced transport costs for hundreds of smaller habitats and broken the route monopoly of several established operators. The work was technically sound, the CLA funding was in place, the political approvals were nearly complete. His death collapsed the deal. The project did not survive its lead constructor. The beneficiaries of that collapse — the route operators, the interests that profit from Belt habitats' limited connectivity — are not named in the official investigation. The investigation focused on how he died, not on who benefitted.</div></div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Pattern</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">Jordan Rossi the constructor shares a name, a profession, and a manner of death with Jordan Rossi the CLA Director, killed in 2880. The same family, the same industry, the same pattern of killing someone whose neutral technical work threatened entrenched interests, repeated across a century. Whether this is coincidence, dynasty, or something more deliberate is a question the story does not immediately answer.</div></div>
+<div class="ph-footer" style="margin-top:16px;">Key figure — Sol 2990 CE &middot; Father of Venna Rossi &middot; Killed before the story begins</div>`;
+  },
+  'char-narafather': ()=>{
+    const fc=FC.Mars;
+    return `<div class="tp-back" onclick="openLoreNode('char-supporting')">&#8592; Supporting Characters</div>
+<div style="border-left:3px solid ${fc};padding-left:14px;margin-bottom:16px;">
+<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:${fc};letter-spacing:.04em;margin-bottom:3px;">Nara's Father</div>
+<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">Atmospheric Maintenance Worker — Sector 19, Valles Marineris</div>
+<div style="font-size:14px;font-style:italic;color:rgba(200,151,58,0.8);line-height:1.5;margin-bottom:8px;">&#8220;Good.&#8221;</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(${hexRgb(fc)},0.35);color:${fc};">Mars Federation</span><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">Supporting Character — Unnamed</span></div></div>
+<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">He maintains the systems that keep people breathing in Sector 19. Not glamorous, not visible, not thanked. He is emotionally withdrawn in the way that accumulates over years rather than the way that arrives suddenly — not cruel, not absent through choice, but somewhere smaller than he used to be. When Nara tells him she's leaving for the city, he says one word: good. It is the most honest thing he has said to her in years. His name has not yet been established.</div>
+<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Location</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Sector 19, Valles Marineris</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Work</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Atmospheric maintenance</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Name</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Not yet established</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Narrative role</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Nara's departure catalyst</div></div>
+</div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Work</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">Atmospheric maintenance in a Martian agricultural zone is necessary, technically demanding, and completely invisible when done correctly. The systems he maintains keep the dome pressure stable, the air mix within tolerance, the humidity at the level that the crops require and the people can tolerate. Nobody notices this work. Nobody is supposed to. A perfectly maintained system is indistinguishable from a system that maintains itself. He has been doing this for long enough that the invisibility has become something he expects rather than something that disappoints him.</div></div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">One Word</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">When Nara tells him she is leaving Sector 19 for the city, he perks up slightly and says "good." One word. In it she hears: that he knows she is wasted here, that he has known for a long time, that he doesn't have the energy to say more but has enough left to mean it. He does not try to stop her. He does not offer advice. He does not make it about himself. He has been a smaller version of himself for long enough that this single word of genuine encouragement is, unexpectedly, one of the larger things he has given her.</div></div>
+<div class="ph-footer" style="margin-top:16px;">Supporting character — Sol 2990 CE &middot; Name TBD &middot; Father of Nara Elani</div>`;
+  },
+  'char-historical': ()=>{
+    return `<div class="sec-header">Historical Figures</div>
+<p class="note">Individuals who shaped the solar system before the story's present day. Their decisions, errors, and legacies are still felt in 2994 CE.</p>
+<div class="char-card" style="cursor:pointer" onclick="openLoreNode('char-kantaro')"><div class="char-stripe" style="background:${FC.Sovereign}"></div><div style="flex:1"><div class="char-name">Dr. Eliza Kantaro</div><div class="char-role" style="color:${FC.Sovereign}">Founder of the Aureate Sovereign · 2292–2344 CE</div><div class="char-desc" style="margin-top:7px;font-style:italic;color:rgba(200,151,58,0.75);">&#8220;She meant to build a community. She accidentally built a dynasty.&#8221;</div></div><div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>
+<div class="char-card" style="cursor:pointer" onclick="openLoreNode('char-nazari')"><div class="char-stripe" style="background:${FC.Sovereign}"></div><div style="flex:1"><div class="char-name">Emperor Nazari</div><div class="char-role" style="color:${FC.Sovereign}">First Emperor · declared Empire 2429 CE</div><div class="char-desc" style="margin-top:7px;font-style:italic;color:rgba(200,151,58,0.75);">&#8220;He named a thing and made it real.&#8221;</div></div><div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>
+<div class="char-card" style="cursor:pointer" onclick="openLoreNode('char-chen-hist')"><div class="char-stripe" style="background:${FC.Terra}"></div><div style="flex:1"><div class="char-name">Chen Wei</div><div class="char-role" style="color:${FC.Terra}">Solar Compact Chief Negotiator · 2710–2718 CE</div><div class="char-desc" style="margin-top:7px;font-style:italic;color:rgba(200,151,58,0.75);">&#8220;He built a peace that has lasted 276 years. Nobody remembers how close it came to failing.&#8221;</div></div><div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>
+<div class="ph-footer">Historical figures — Sol 2990 CE</div>`;
+  },
+  'char-hist-overview': ()=>CONTENT_MAP['char-historical'](),
+  'char-kantaro': ()=>{
+    const fc=FC.Sovereign;
+    return `<div class="tp-back" onclick="openLoreNode('char-historical')">&#8592; Historical Figures</div>
+<div style="border-left:3px solid ${fc};padding-left:14px;margin-bottom:16px;">
+<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:${fc};letter-spacing:.04em;margin-bottom:3px;">Dr. Eliza Kantaro</div>
+<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">Founder of the Aureate Sovereign · 2292–2344 CE</div>
+<div style="font-size:14px;font-style:italic;color:rgba(200,151,58,0.8);line-height:1.5;margin-bottom:8px;">&#8220;She meant to build a community. She accidentally built a dynasty.&#8221;</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(${hexRgb(fc)},0.35);color:${fc};">Aureate Sovereign (founder)</span><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">Historical Figure · 2257–2344 CE</span></div></div>
+<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">In 2292, Dr. Eliza Kantaro led 8,200 disillusioned Jupiter colonists to Saturn in what they called the Liberty Expedition. She did not set out to found an empire. She set out to build a community that worked differently from the corporate efficiency model she had left behind. Every decision she made in the early years of the Saturn settlement was practical, responsive, and reasonable given the circumstances. The structures she created to survive became, over centuries, the foundations of the most elaborate aristocratic political system in human space.</div>
+<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Born</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">2257 CE, Jupiter system</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Died</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">2344 CE, Titan</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Expedition</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Liberty Expedition, 2292 CE</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Legacy</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Inadvertent founder of the Consortium system</div></div>
+</div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Liberty Expedition</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">The nine-month transit to Saturn was brutal. Nearly 300 of the 8,200 colonists died in the first winter at Titan — cold, equipment failure, the gap between what they had planned for and what they found. Kantaro's response to the crisis established the template: she assigned resource management domains to her most trusted lieutenants. Practical necessity, not political vision. The water goes to these people to manage; the agricultural production goes to those people to manage; manufacturing to others. These domain assignments were the proto-Consortiums. She would not have recognised them as such.</div></div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Succession Choice</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">Before her death in 2344, Kantaro personally selected Marcus Reynolds as her successor — a young leader who had distinguished himself technically and diplomatically. She did not implement democratic processes. She chose someone she trusted. This was the second structural choice that shaped everything after: succession by personal selection rather than election or hereditary right. The principle evolved across generations into the designation system, the Consortium ratification vote, and ultimately the byzantine succession politics of the modern Empire. She would, in all probability, have been horrified by what she started.</div></div>
+<div style="font-size:14.5px;line-height:1.68;opacity:.72;font-weight:300;padding:10px 13px;background:rgba(${hexRgb(fc)},0.05);border:1px solid rgba(${hexRgb(fc)},0.15);margin-top:10px;">The Aureate Sovereign venerates Kantaro as a founding mother, but the Kantaro that is venerated — the visionary architect of the Imperial system — is not quite the person who actually led the Liberty Expedition. She was a practical community leader making decisions under survival pressure. The Empire she is credited with founding was built by the people who came after her, using the structures she created for reasons she could not have anticipated.</div>
+<div class="ph-footer" style="margin-top:16px;">Historical figure — Sol 2990 CE &middot; Founder, Liberty Expedition (2292 CE)</div>`;
+  },
+  'char-nazari': ()=>{
+    const fc=FC.Sovereign;
+    return `<div class="tp-back" onclick="openLoreNode('char-historical')">&#8592; Historical Figures</div>
+<div style="border-left:3px solid ${fc};padding-left:14px;margin-bottom:16px;">
+<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:${fc};letter-spacing:.04em;margin-bottom:3px;">Emperor Nazari</div>
+<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">First Emperor of the Aureate Sovereign · declared 2429 CE</div>
+<div style="font-size:14px;font-style:italic;color:rgba(200,151,58,0.8);line-height:1.5;margin-bottom:8px;">&#8220;He named a thing and made it real.&#8221;</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(${hexRgb(fc)},0.35);color:${fc};">Aureate Sovereign</span><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">Historical Figure · First Emperor</span></div></div>
+<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">Four years after the Treaty of Oberon recognised outer system independence, the leader then known simply as Nazari declared the Sovereign Empire of the Outer Systems. The declaration was not a military coup or a political revolution — it was a naming. The structures existed. The power relationships existed. The Great Families and their resource monopolies existed. Nazari gave the system a name, a mythology, and an Imperial mandate. In the outer system's historical memory, he is the founder of the Empire; in a more precise accounting, he was the person who formalised what was already there.</div>
+<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Declaration</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">2429 CE, Titan</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">First act</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Consortium Convention (2445)</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Origin</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Brazilian-descended, Saturn</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Legacy</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Imperial structure, Português Imperial</div></div>
+</div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Declaration</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">The Sovereign Empire of the Outer Systems was declared in 2429, four years after Jupiter formally recognised outer system independence under the Treaty of Oberon. The timing was deliberate — Nazari waited until the legal basis for independence was settled before naming what that independence had become. The declaration was framed as a natural evolution rather than a new beginning: the outer system had always been this way; it was simply now acknowledging it formally. The framing worked. The Consortium families accepted it because it formalised their existing power. The outer system population accepted it because it gave their community a name that wasn't defined by where they weren't.</div></div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">Cultural Legacy</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">Nazari's Brazilian-descended background shaped the aesthetic and linguistic character of the early Empire more than any structural decision he made. The ceremony, the hierarchy, the elaborate social protocol, and critically the prestige language — what became Português Imperial — all reflect the cultural preferences of the founding class. The First Consortium Convention in 2445 formalised 23 Great Families with exclusive resource rights. Within two generations, Português Imperial had moved from a prestige dialect of the educated class to the dominant language of Imperial nobility. Nazari is why the Empire speaks what it speaks.</div></div>
+<div class="ph-footer" style="margin-top:16px;">Historical figure — Sol 2990 CE &middot; First Emperor, 2429 CE declaration</div>`;
+  },
+  'char-chen-hist': ()=>{
+    const fc=FC.Terra;
+    return `<div class="tp-back" onclick="openLoreNode('char-historical')">&#8592; Historical Figures</div>
+<div style="border-left:3px solid ${fc};padding-left:14px;margin-bottom:16px;">
+<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:${fc};letter-spacing:.04em;margin-bottom:3px;">Chen Wei</div>
+<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">Solar Compact Chief Negotiator · 2710–2718 CE</div>
+<div style="font-size:14px;font-style:italic;color:rgba(200,151,58,0.8);line-height:1.5;margin-bottom:8px;">&#8220;He built a peace that has lasted 276 years. Nobody remembers how close it came to failing.&#8221;</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(${hexRgb(fc)},0.35);color:${fc};">Terra / Neutral</span><span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">Historical Figure · Compact Era</span></div></div>
+<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">The Solar War ended in a ceasefire in January 2710. The peace that replaced it took eight more years to build. Chen Wei led the Terran delegation through negotiations that produced the Solar Compact — the foundational document of modern interplanetary order. He did not achieve a just peace. He achieved a functional one, which in the circumstances of 2710 was the only kind available. The Compact that emerged from his work has been amended seventeen times and remains imperfect, frequently strained, and holding. 276 years later, it is still the framework under which the solar system organises itself.</div>
+<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Active</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Negotiation period 2710–2718</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Role</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Terran lead negotiator</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Achievement</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Solar Compact, signed 15 Apr 2718</div></div>
+<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">Key innovation</div><div style="font-size:14px;font-weight:600;color:var(--text-bright);">Separated energy from everything else</div></div>
+</div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Breakthrough</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">Eight years of negotiation nearly collapsed several times. The breakthrough came from Chen Wei's decision to separate the energy question from every other agenda item: the Solar Energy Consortium was designed specifically to make solar development everybody's project rather than any faction's monopoly. Once that separation was achieved, the other issues — trade protection, conflict mediation requirements, the Human Rights Commission — could be negotiated without the solar question poisoning each one. The approach was not obvious. Every faction had entered negotiations assuming the energy question had to be resolved first, since it was what the war had been about. Chen Wei convinced enough delegations that resolving it last was the only way it would get resolved at all.</div></div>
+<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);"><div style="padding:9px 13px;border-left:2px solid ${fc}"><span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">The Signing</span></div><div style="padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">The Solar Compact was signed at Pluto Scientific Station on April 15, 2718. The location was chosen for deliberate neutrality — the most distant inhabited point in the solar system, belonging to no faction, associated with no historical grievance. Before signing, the names of all 2.1 million Solar War dead were read aloud. It took eighteen hours. Chen Wei reportedly did not sleep during that time. Whether this is documented fact or institutional myth has become impossible to determine. The ceremony has been recreated in formal diplomatic education curricula across every faction for 276 years.</div></div>
+<div class="ph-footer" style="margin-top:16px;">Historical figure — Sol 2990 CE &middot; Solar Compact Chief Negotiator &middot; 2710–2718 CE</div>`;
+  },
   'conflicts': ()=>comingSoon('conflicts'),
   'conf-overview': ()=>comingSoon('conf-overview'),
   'conf-active': ()=>comingSoon('conf-active'),
@@ -6073,6 +6187,90 @@ const CHAR_DATA = [
     language: 'TBD',
     openQ: ['Everything — concept only at this stage'],
   },
+  {
+    id: 'venna',
+    name: 'Venna Rossi',
+    faction: 'Jupiter',
+    role: 'Physics Student / Aspiring Array Engineer',
+    location: 'Io, Jupiter System',
+    origin: 'Born on Io',
+    age: '17',
+    status: 'In Development',
+    wip: true,
+    tagline: 'Her father built things that moved the solar system. She never got to show him what she could do.',
+    summary: 'Seventeen years old, born and raised on Io, with an intuitive grasp of lightlane physics that her father — a CLA array constructor — never fully acknowledged. When Jordan Rossi is killed, Venna is left with grief, unanswered questions about his work and the people around him, and the dawning awareness that the official account of his death does not fully hold together. She does not yet know Tomas Reyes exists. They will eventually meet.',
+    physical: [
+      ['Height', '195 cm'],
+      ['Mass', '50 kg'],
+      ['Bone density', '~50% Earth baseline (Io 0.18g)'],
+      ['Gravity tolerance', 'Cannot visit Mars, Belt, or Earth. Essentially locked to the Jupiter system without medical intervention.'],
+    ],
+    sections: [
+      { title: 'Io', body: "Io is not a gentle place to grow up. Volcanic activity is constant background noise; tidal heating from Jupiter keeps the surface geologically active in ways no other inhabited moon is. The habitat infrastructure is engineered against this — everything is built to flex, not resist. Growing up on Io shapes a particular relationship to impermanence and to engineering under constraint. Venna absorbed this without naming it. Systems that have to work despite the ground moving are a different problem from systems that assume the ground stays still." },
+      { title: 'Her Father', body: "Jordan Rossi was a CLA lightlane array constructor — technically excellent, politically cautious, committed to work that connected underserved Belt communities to the main transit network. Venna understood his physics better than he admitted. She developed ideas for quantum-linked coordination systems that could improve array synchronisation, brought them to him, watched him table them for reasons that were never quite technical. The gap between what she could see and what she was permitted to contribute to was the central friction of her life before his death. She doesn't know yet what she lost access to when she lost him. She doesn't know yet what he was working on when he died." },
+      { title: 'The Death', body: "The official account says Jordan Rossi died in a construction accident. The account is internally consistent and has been processed through the appropriate CLA channels. Venna doesn't believe it — not as a conclusion she's reached, but as a feeling she hasn't been able to resolve. The timing doesn't fit what he told her about the project's status. The people who have reached out to offer condolences include some she has never heard him mention. The accident reconstruction raises a question she can't find the answer to in the public record. She doesn't know what she's looking at yet. But she knows something is wrong." },
+      { title: 'The Physics', body: "Her actual work — quantum-linked coordination systems for lightlane arrays — is genuine and significant. She developed it to solve a real synchronisation problem in multi-node arrays over long baseline distances. The mathematics works. The approach is novel enough that, if published, it would land in the right journals and be read by the right people. She hasn't published it because her father kept asking her to wait until the timing was right, and then he died. The work is sitting in her personal files, half-finished, waiting for a reason to continue." },
+    ],
+    theme: 'What you inherit from the people who leave too soon. The difference between what your parents built and what they kept from you. Physics as the one system that doesn\'t have a hidden agenda.',
+    language: 'Standard Jovian with Io technical substrate. Fluent in the mathematical shorthand of array physics — comfortable with notation that most people treat as opaque. Her accent marks her as outer-Jupiter rather than Ganymede educated.',
+    openQ: ['How does she connect with Tomas — timing and mechanism?', 'What specifically doesn\'t add up in the official accident account?', 'Does she pursue the truth independently before meeting Tomas, or does their meeting catalyse it?', 'Her mother — present? Where?'],
+  },
+  {
+    id: 'anton',
+    name: 'Anton Nishida',
+    faction: 'Jupiter',
+    role: 'Cargo Integrity Specialist, He-3 Transport Vessels',
+    location: 'Tharsis Current (in transit, Jovian system)',
+    origin: 'Europa, Jupiter System',
+    age: 'Mid 30s',
+    status: 'In Development',
+    wip: true,
+    tagline: 'He calls himself a glorified cargo babysitter. He is the reason nothing explodes.',
+    summary: 'Cargo integrity specialist aboard the helium-3 transport vessel Tharsis Current. Meticulous, thorough, respected by everyone who has worked with him — and by no one who hasn\'t. His professional excellence requires extended time away from Europa, where his daughter Kara lives with her mother. Anton describes himself as a glorified cargo babysitter. The description is self-deprecating and accurate and misses the point entirely.',
+    physical: [
+      ['Height', 'TBD'],
+      ['Origin', 'Europa, Jupiter System'],
+      ['Assignment', 'He-3 transport, Tharsis Current'],
+      ['Family status', 'Married with children; wife and daughter Kara (14) on Europa'],
+    ],
+    sections: [
+      { title: 'What He Actually Does', body: "Helium-3 containment failure is not a slow problem. A compromised magnetic bottle on a fully loaded transport is a catastrophe measured in seconds. Anton's job is to detect the early signatures of containment drift — subtle anomalies in field geometry, micro-fluctuations in pressure gradients, thermal signatures that don't match the expected profile — before they become anything. He is good at this in the way that good surgeons are good at surgery: the people who benefit most from his skill are never quite aware it was needed. His record is clean precisely because of his attention. His record looks uneventful because nothing has gone wrong." },
+      { title: 'The Work Schedule', body: "He-3 transport runs are long. The Jovian system is large, transit legs between facilities and transfer points are measured in days and weeks, and the economics of the cargo mean ships don't wait. Anton is away from Europa for months at a stretch. Kara is fourteen. He understands the arithmetic — that she is growing up during the gaps between visits, that the person he'll come home to each time will have changed in ways he didn't see happen. He can't fix this. He has tried rearranging rotations, applying for inner-system assignments, calculating whether the financial hit of a career pivot would be recoverable. The numbers don't work." },
+      { title: 'What He Notices', body: "The skill set that makes him excellent at cargo integrity — noticing things that are slightly off, things that don't quite fit the expected pattern — doesn't turn off when he goes off-shift. He notices things on the Tharsis Current that don't fit. Personnel decisions that seem odd given the stated mission parameters. Cargo manifests with small discrepancies that could be data entry or could be something else. A conversation that stopped when he came around a corner. He isn't a detective. He isn't looking for trouble. But he is, constitutionally, someone who notices when something doesn't add up." },
+      { title: 'Kara', body: "Fourteen, Europa, growing up faster than he can observe. She is interested in biology — specifically the subsurface ocean ecosystems that make Europa one of the most scientifically significant places in the solar system. She doesn't share this with him often. Their call windows are constrained by transit geometry and his shift schedule, and by the particular sixteen-year-old's reluctance to be excited about things in front of a parent who will say something supportive and well-meaning that still misses the point. He loves her very specifically and somewhat abstractly. He knows her mostly as who she was, less as who she is becoming." },
+    ],
+    theme: 'The professional cost of excellence. What attention to detail looks like when you can\'t turn it off. The arithmetic of distance and growing up, and what you lose track of while you\'re busy not losing other things.',
+    language: 'Standard Jovian, professional register. Technical vocabulary of containment systems and cargo logistics. Probably some Europa scientific dialect — subsurface biology terminology absorbed from a childhood in that community.',
+    openQ: ['What specific anomaly does he notice that pulls him into the main plot?', 'How does his story connect to the Rossi assassination and the lightlane politics?', 'Does he have a contact on Ceres or in the Belt?', 'His relationship with his wife — strained, resigned, functional?'],
+  },
+  {
+    id: 'marcus-chen',
+    name: 'Marcus Chen',
+    faction: 'Venus',
+    role: 'Ship Mechanic, Jin\'s Independent Repairs',
+    location: 'Outer orbital ring, Venus orbital space',
+    origin: 'Venus orbital (outer ring)',
+    age: 'TBD',
+    status: 'In Development',
+    wip: true,
+    tagline: 'Knows exactly how things work. Has never had the clearance to do anything interesting with that.',
+    summary: 'Ship mechanic at Jin\'s Independent Repairs in the outer rings of Venus orbital space. Skilled, meticulous, well-regarded by the people who bring him their systems problems. Lives in the outer ring, where the infrastructure is older and the views of Venus\'s cloud layer are still spectacular if you know where to look. Recently offered a job that doesn\'t fit the profile of the work he usually gets approached for.',
+    physical: [
+      ['Location', 'Outer orbital ring, Venus orbital'],
+      ['Employer', 'Jin\'s Independent Repairs'],
+      ['Specialisation', 'Complex system diagnostics and mechanical repair'],
+      ['Status', 'Recently offered unusual employment opportunity'],
+    ],
+    sections: [
+      { title: 'Jin\'s Independent Repairs', body: "The outer ring is not where the important ships come for service. The important ships — Inner Commerce Authority vessels, corporate haulers with active maintenance contracts, anything flying Aphrodite Compact registry — go to the certified yards in the inner ring. Jin's gets the ships that can't afford the inner ring, the independent operators running older hardware, the Belt traders passing through who need work done quickly and cheaply. The work is varied, the equipment is often improvised, and the diagnostic challenges are real because nothing is standardised. For someone who actually wants to understand systems rather than follow a maintenance protocol, it's a better education than a certified yard." },
+      { title: 'The Outer Ring', body: "Venus orbital's outer ring is not glamorous. The habitat infrastructure is older — some of it dates to the early settlement period, repeatedly patched and extended rather than replaced. The inner ring has the commercial district, the diplomatic facilities, the expensive views of the cloud layer from properly pressurised observation lounges. The outer ring has better access to working docks and worse everything else. Marcus lives here because this is where the work is and because the rent is something he can pay. He has no particular resentment about this. It's a fact of the economic geography." },
+      { title: 'The Job Offer', body: "Someone contacted him about a technical position. The framing was vague in the specific way that vague framings are either legitimate or not — high-end private technical advisory, discretion required, compensation substantially above his current rate. The work described would use his skills. The entity making the offer is not immediately identifiable from what he's been told. He hasn't said yes or no. He's thinking about it in the way that people think about things they already know the shape of the answer to but aren't ready to commit to yet." },
+      { title: 'What He\'s Good At', body: "Marcus documents his repairs. Detailed records of what he found, what he changed, why, what the system was doing before and after. Most mechanics don't bother at this level — the work is done, the ship leaves, that's the transaction. He does it because the patterns across jobs are interesting: the way certain failure modes cluster around certain hull generations, the way certain operators' ships develop characteristic drift, the systemic things that only show up if you're looking across enough individual cases. He hasn't done anything with this. He doesn't know yet that it's valuable." },
+    ],
+    theme: 'Technical competence as a form of clarity in a world that runs on opacity. The outer ring as the place where you can see everything clearly and affect very little of it. What it looks like when an ordinary professional life intersects with the machinery of larger events.',
+    language: 'Standard Venusian with outer-ring working-class inflection. Probably some Cantonese substrate — Jin\'s is a Chinese-diaspora operation and the outer ring has significant Sino-Venusian community presence. Technical vocabulary extensive; formal vocabulary limited.',
+    openQ: ['Who is making the job offer and what is the actual work?', 'How does his story connect to Soren Abel\'s operation?', 'Does he notice anything in Mercury-manufactured ship components that shouldn\'t be there?', 'His family situation — not yet established'],
+  },
 ];
 
 function charStatusBadge(wip){ return wip ? '<span class="ph-tag">WIP</span>' : ''; }
@@ -6082,7 +6280,8 @@ function characters(){
     '<p class="note">Sol 2990 CE follows seven POV characters across the solar system. Click any character to open their full profile.</p>'+
     CHAR_DATA.map((ch,i)=>{
       const fc = FC[ch.faction] || '#b8b0c0';
-      return '<div class="char-card" style="cursor:pointer" onclick="openCharPage('+i+')">' +
+      const nodeId = 'char-'+ch.id.replace('obaire','davin');
+      return '<div class="char-card" style="cursor:pointer" onclick="openLoreNode(\''+nodeId+'\')">' +
         '<div class="char-stripe" style="background:'+fc+'"></div>'+
         '<div style="flex:1">'+
           '<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px">'+
@@ -6100,15 +6299,9 @@ function characters(){
     '<div class="ph-footer">Three characters fully developed &middot; Four in development &middot; Seven total POV arcs</div>';
 }
 
-function openCharPage(idx){
-  const ch = CHAR_DATA[idx];
+function _charPageHTML(ch){
   const fc = FC[ch.faction] || '#b8b0c0';
-  const tc = document.getElementById('tab-content');
-
-
-  let html = '<div class="tp-back" onclick="document.getElementById(\'tab-content\').innerHTML=characters()">&#8592; All Characters</div>';
-
-
+  let html = '<div class="tp-back" onclick="openLoreNode(\'characters\')">&#8592; All Characters</div>';
   html += '<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:16px;">';
   html += '<div style="font-family:Cinzel,serif;font-size:22px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:3px;">'+ch.name+'</div>';
   html += '<div style="font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-bottom:6px;">'+ch.role+'</div>';
@@ -6118,18 +6311,11 @@ function openCharPage(idx){
   html += '<span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid var(--border);opacity:.5;">'+ch.status+'</span>';
   if(ch.wip) html += '<span style="font-size:11px;letter-spacing:.18em;padding:2px 8px;border:1px solid rgba(200,151,58,0.3);color:var(--accent);">ACTIVE DEVELOPMENT</span>';
   html += '</div></div>';
-
-
   html += '<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:16px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">'+ch.summary+'</div>';
-
-
-  if(ch.physical.length > 0){
+  if(ch.physical&&ch.physical.length > 0){
     html += '<div class="sec-header" style="font-size:11px;margin-bottom:8px;">Profile</div>';
     html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:16px;">';
-    const allStats = [
-      ['Location',ch.location],['Origin',ch.origin],['Age',ch.age],
-      ...ch.physical
-    ];
+    const allStats = [['Location',ch.location],['Origin',ch.origin],['Age',ch.age],...ch.physical];
     allStats.forEach(([k,v])=>{
       html += '<div style="background:var(--bg-card);border:1px solid var(--border);padding:7px 10px;">'+
         '<div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:3px;">'+k+'</div>'+
@@ -6137,19 +6323,35 @@ function openCharPage(idx){
     });
     html += '</div>';
   }
-
-
-  ch.sections.forEach(s=>{
+  (ch.sections||[]).forEach(s=>{
     html += '<div style="margin-bottom:10px;border:1px solid var(--border);background:var(--bg-card);overflow:hidden;">';
-    html += '<div style="padding:9px 13px;border-left:2px solid '+fc+';cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;" onclick="this.parentElement.classList.toggle(\'sec-open\');this.querySelector(\'.sec-chev\').style.transform=this.parentElement.classList.contains(\'sec-open\')?\'rotate(90deg)\':\'\'">';
+    html += '<div style="padding:9px 13px;border-left:2px solid '+fc+';cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;" onclick="this.parentElement.classList.toggle(\'sec-open\');this.querySelector(\'.sec-chev\').style.transform=this.parentElement.classList.contains(\'sec-open\')?\'rotate(90deg)\':\'\'\">';
     html += '<span style="font-size:14.5px;font-weight:600;color:var(--text-bright);">'+s.title+'</span>';
     html += '<span class="sec-chev" style="font-size:12px;opacity:.4;transition:transform .2s;">&#9658;</span></div>';
     html += '<div class="sec-body" style="display:none;padding:11px 13px 13px;font-size:14.5px;line-height:1.72;opacity:.78;font-weight:300;border-top:1px solid var(--border);">'+s.body+'</div></div>';
   });
+  html += '<div class="sec-header" style="font-size:11px;margin-top:14px;margin-bottom:8px;">Thematic Role</div>';
+  html += '<div style="font-size:14.5px;line-height:1.68;opacity:.72;font-weight:300;padding:10px 13px;background:rgba('+hexRgb(fc)+',0.05);border:1px solid rgba('+hexRgb(fc)+',0.15);">'+ch.theme+'</div>';
+  if(ch.language){
+    html += '<div style="margin-top:10px;padding:9px 13px;background:var(--bg-card);border:1px solid var(--border);">';
+    html += '<div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:4px;">Language & Speech</div>';
+    html += '<div style="font-size:14px;line-height:1.65;opacity:.7;font-weight:300;">'+ch.language+'</div></div>';
+  }
+  if(ch.openQ&&ch.openQ.length > 0){
+    html += '<div class="sec-header" style="font-size:11px;margin-top:14px;margin-bottom:8px;">Open Questions</div>';
+    html += '<div style="background:var(--bg-card);border:1px solid rgba(200,151,58,0.12);padding:10px 13px;">';
+    html += ch.openQ.map(q=>'<div style="font-size:14px;padding:3px 0 3px 12px;border-left:1px solid var(--accent-dim);margin-bottom:5px;opacity:.6;font-weight:300;">'+q+'</div>').join('');
+    html += '</div>';
+  }
+  html += '<div class="ph-footer" style="margin-top:16px;">Character file — Sol 2990 CE &middot; '+ch.status+'</div>';
+  return html;
+}
 
+function openCharPage(idx){
+  const ch = CHAR_DATA[idx];
+  const tc = document.getElementById('tab-content');
+  tc.innerHTML = _charPageHTML(ch);
   setTimeout(()=>{
-    document.querySelectorAll('.sec-open .sec-body').forEach(el=>el.style.display='block');
-
     document.querySelectorAll('[onclick*="sec-open"]').forEach(btn=>{
       const parent = btn.parentElement;
       parent.classList.add('sec-open');
@@ -6159,29 +6361,6 @@ function openCharPage(idx){
       if(chev) chev.style.transform='rotate(90deg)';
     });
   },20);
-
-
-  html += '<div class="sec-header" style="font-size:11px;margin-top:14px;margin-bottom:8px;">Thematic Role</div>';
-  html += '<div style="font-size:14.5px;line-height:1.68;opacity:.72;font-weight:300;padding:10px 13px;background:rgba('+hexRgb(fc)+',0.05);border:1px solid rgba('+hexRgb(fc)+',0.15);">'+ch.theme+'</div>';
-
-
-  if(ch.language){
-    html += '<div style="margin-top:10px;padding:9px 13px;background:var(--bg-card);border:1px solid var(--border);">';
-    html += '<div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.38;margin-bottom:4px;">Language & Speech</div>';
-    html += '<div style="font-size:14px;line-height:1.65;opacity:.7;font-weight:300;">'+ch.language+'</div></div>';
-  }
-
-
-  if(ch.openQ.length > 0){
-    html += '<div class="sec-header" style="font-size:11px;margin-top:14px;margin-bottom:8px;">Open Questions</div>';
-    html += '<div style="background:var(--bg-card);border:1px solid rgba(200,151,58,0.12);padding:10px 13px;">';
-    html += ch.openQ.map(q=>'<div style="font-size:14px;padding:3px 0 3px 12px;border-left:1px solid var(--accent-dim);margin-bottom:5px;opacity:.6;font-weight:300;">'+q+'</div>').join('');
-    html += '</div>';
-  }
-
-  html += '<div class="ph-footer" style="margin-top:16px;">Character file — Sol 2990 CE &middot; '+ch.status+'</div>';
-
-  tc.innerHTML = html;
 }
 
 function history(){
