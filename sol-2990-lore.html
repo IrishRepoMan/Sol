@@ -7692,10 +7692,13 @@ function techMedical(){
 /* ===== BIOLOGY NODES ===== */
 
 function bioGravity(){
-  let h='<div class="sec-header">Biological Adaptation: Gravity</div>';
-  h+='<div style="font-size:13px;opacity:.45;margin-bottom:16px;font-style:italic">25 generations of development in different gravitational environments. The people are still human. They are not the same anymore.</div>';
-  h+=`<div class="fac-sec-text" style="line-height:1.7;margin-bottom:16px">After 700+ years (20-25 generations) of settlement in radically different gravity environments, distinct human populations have emerged. The adaptations are not genetic engineering \u2014 they are the cumulative result of developmental biology responding to environmental pressures, with epigenetic changes becoming heritable across generations. Select an environment for specific profiles.</div>`;
-  h+=`<div style="overflow-x:auto"><table class="bio-table">
+  const fc='#d4a040';
+  let h='<div class="tp-back" onclick="openLoreNode(\'biology\')">&#8592; Healthcare & Biology</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Gravity & Physical Divergence</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">25 generations &middot; distinct populations &middot; still human</div></div>';
+  h+='<div style="font-size:15px;line-height:1.72;opacity:.8;font-weight:300;margin-bottom:14px;padding:12px 14px;background:var(--bg-card);border:1px solid var(--border);">After 700+ years of settlement in radically different gravity environments, distinct human populations have emerged. The adaptations are not genetic engineering &#8212; they are the cumulative result of developmental biology responding to environmental pressures, with epigenetic changes becoming heritable across generations.</div>';
+  h+=`<div style="overflow-x:auto;margin-bottom:16px"><table class="bio-table">
     <thead><tr><th>Population</th><th>Comfortable Range</th><th>Medical Limit</th><th>Average Height</th><th>Bone Density (Earth baseline)</th></tr></thead>
     <tbody>
       <tr><td>Earth-native</td><td>0.8\u20131.2g</td><td>3g sustained</td><td>170 cm</td><td>100%</td></tr>
@@ -7705,77 +7708,122 @@ function bioGravity(){
       <tr><td>Outer system</td><td>0.005\u20130.15g</td><td>0.3g</td><td>195\u2013205 cm</td><td>30\u201340%</td></tr>
     </tbody>
   </table></div>`;
+  const kids=[
+    {id:'bio-grav-belt',n:'Belt & Outer System',sub:'200 cm \u00b7 48 kg \u00b7 35% bone density \u00b7 the most physically distinct population in human space'},
+    {id:'bio-grav-mars',n:'Martian Adaptation',sub:'185 cm avg \u00b7 68% bone density \u00b7 lean and long-limbed \u00b7 magnetic boots for traction, not flotation'},
+    {id:'bio-grav-jovian',n:'Jovian Adaptation',sub:'0.15\u20130.3g habitats \u00b7 intermediate profile \u00b7 gravity tier as quiet class marker'},
+    {id:'bio-grav-outer',n:'Outer System Adaptation',sub:'Miranda \u00b7 Triton \u00b7 Titan \u00b7 Belt-adjacent profiles at the edge of human space'},
+    {id:'bio-grav-risks',n:'Cross-Environment Health Risks',sub:'The medical reality of visiting the wrong gravity environment'},
+  ];
+  kids.forEach(k=>{
+    h+=`<div class="char-card" style="cursor:pointer" onclick="openLoreNode('${k.id}')">`;
+    h+=`<div class="char-stripe" style="background:${fc}"></div>`;
+    h+=`<div style="flex:1"><div class="char-name">${k.n}</div>`;
+    h+=`<div class="char-role" style="color:${fc}">${k.sub}</div></div>`;
+    h+=`<div style="flex-shrink:0;font-size:20px;opacity:.25;align-self:center;padding-left:8px;">&#8250;</div></div>`;
+  });
+  h+='<div class="ph-footer" style="margin-top:14px;">Gravity & Physical Divergence &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioGravBelt(){
-  let h='<div class="sec-header">Belt Biological Profile</div>';
-  h+='<div style="font-size:13px;opacity:.45;margin-bottom:16px;font-style:italic">Average 200 cm. 48 kg. 35% Earth bone density. The most physically distinct human population in the solar system.</div>';
+  const fc='#d4a040';
+  let h='<div class="tp-back" onclick="openLoreNode(\'bio-gravity\')">&#8592; Gravity & Physical Divergence</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Belt & Outer System</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">200 cm &middot; 48 kg &middot; 35% Earth bone density &middot; the most physically distinct human population in the solar system</div></div>';
   const S=[
     {id:'bgb-phys',t:'Physical Characteristics',b:`Belt populations \u2014 living predominantly at near-zero to 0.1g \u2014 show the most extreme gravitational adaptation in human space. By 2994, the average Belt-native adult is 200 cm tall (the spine elongates without gravity compressing it), 48 kg in mass, with bone density at 35% of Earth baseline and muscle mass at approximately 55% of Earth-equivalent. The physical profile is unmistakable to any observer: extremely tall and thin, long delicate limbs, large head relative to body, pale skin (minimal direct sun exposure), visible superficial vasculature from thin skin and low blood pressure.<br><br>The functional capability profile is inverse to the physical fragility that Earth or Mars residents perceive: in their actual environment, Belt-natives are physically capable, spatially adept, and biomechanically efficient. Their 3D spatial reasoning \u2014 developed through childhood navigation of complex 3D habitats in zero to low gravity \u2014 consistently exceeds any other human population on measured assessments.`},
     {id:'bgb-limits',t:'Environmental Limits',b:`The Belt-native\u2019s dangerous gravity range starts at 0.2g and becomes fatal above 0.4g. Visiting Mars (0.38g) requires months of pharmaceutical preparation, compression suit support, and medical monitoring; even with preparation, the injury rate for Belt-natives attempting Mars visits is high. Earth (1g) is fatal without extraordinary medical intervention that few Belt-natives would survive. This gravitational constraint is the most significant practical barrier to inter-factional mobility in the solar system; a Belt resident who wants to work in Terran or Jovian orbital space faces a medical obstacle that no amount of motivation overcomes.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Belt & Outer System &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioGravMars(){
-  let h='<div class="sec-header">Mars Biological Profile</div>';
-  h+='<div style="font-size:13px;opacity:.45;margin-bottom:16px;font-style:italic">185 cm average height. 58 kg. 68% Earth bone density. Lean and tall. Magnetic boots for traction, not flotation.</div>';
+  const fc='#d4a040';
+  let h='<div class="tp-back" onclick="openLoreNode(\'bio-gravity\')">&#8592; Gravity & Physical Divergence</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Martian Adaptation</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">185 cm avg &middot; 68% bone density &middot; lean and long-limbed &middot; magnetic boots for traction, not flotation</div></div>';
   const S=[
     {id:'bgm-phys',t:'Physical Characteristics',b:`Mars-native populations at 0.38g show the intermediate adaptation profile: taller than Earth baseline (185 cm average vs Earth\u2019s 170 cm), leaner, with bone density at 68% of Earth baseline and muscle mass at approximately 78%. The build is lean and long-limbed, with less upper body development than Earth baseline and a cardiovascular system optimised for 0.38g rather than 1g demands. The comfortable gravity range is 0.25-0.5g; Earth (1g) is not immediately fatal but is deeply uncomfortable and requires months of preparation to visit briefly, with medical limits setting the maximum Earth exposure at roughly 0.9g equivalent \u2014 still achievable with pharmaceutical support but not sustainable.<br><br>Nara Elani\u2019s physical characteristics as a third-generation Mars-native: lean, 183 cm, adapted for Martian gravity. Her magnetic boots in the agricultural processing facility provide traction efficiency rather than preventing her from floating \u2014 at 0.38g, she is solidly on the floor; the boots help with the grip needed for equipment handling in the facility\u2019s sometimes-wet, sometimes-oil-coated surfaces.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Martian Adaptation &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioGravRisks(){
-  let h='<div class="sec-header">Cross-Environment Risks</div>';
-  h+='<div style="font-size:13px;opacity:.45;margin-bottom:16px;font-style:italic">The medical reality of visiting the wrong gravity environment. Why inter-factional mobility is harder than it looks.</div>';
+  const fc='#d4a040';
+  let h='<div class="tp-back" onclick="openLoreNode(\'bio-gravity\')">&#8592; Gravity & Physical Divergence</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Cross-Environment Health Risks</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">The medical reality of visiting the wrong gravity environment &middot; why inter-factional mobility is harder than it looks</div></div>';
   const S=[
     {id:'bgr-cross',t:'Cross-Environment Medical Emergencies',b:`Cross-environment medical emergencies follow predictable patterns. A Belt-native with a medical emergency in the Mars system faces: transport at maintained 0g, surgery in a specialised low-g operating theatre, recovery in a 0.1g maximum ward, and a survival rate approximately 70% compared to 95% for local surgery. The cost exceeds 500,000 JS; insurance frequently denies coverage. A Mars-native experiencing a cardiac event at a Jovian orbital habitat faces: gravitational adjustment to the nearest Mars-equivalent section, telemedicine consultation with a Mars cardiologist across light-speed delay, and Mars-specific pharmaceutical intervention that may or may not be in the habitat\u2019s dispensary.<br><br>These scenarios are not rare edge cases: they are the routine medical reality for the estimated 5 million inter-factional travellers in the system at any given time. The Luna Medical Institute\u2019s cross-environment emergency medicine programme \u2014 training specialists who can work across multiple adaptation profiles \u2014 is its most oversubscribed specialisation.`},
     {id:'bgr-rel',t:'Relationship Complications',b:`Romantic relationships across gravitational environments face the most brutal practical constraint in human social life. A Belt-native and a Mars-native who fall in love face a choice with no good option: one partner permanently relocates to the other\u2019s environment (with permanent health costs for whoever moves), both maintain a long-distance relationship with occasional neutral-environment visits (high emotional cost, often unsustainable), or one partner accepts progressive health deterioration as the price of the relationship. Artificial womb technology allows children to be gestated at a chosen gravity level, but it does not solve the parents\u2019 own compatibility problem. These relationships exist and some of them survive; they require unusual commitment to navigate.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Cross-Environment Health Risks &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioGravJovian(){
-  let h='<div class="sec-header">Jovian Orbital Profile</div>';
+  const fc='#d4a040';
+  let h='<div class="tp-back" onclick="openLoreNode(\'bio-gravity\')">&#8592; Gravity & Physical Divergence</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Jovian Adaptation</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">0.15&#8211;0.3g habitats &middot; intermediate profile &middot; gravity tier as quiet class marker</div></div>';
   const S=[
     {id:'bgj-phys',t:'Jovian Orbital Adaptation',b:`Jovian orbital habitats typically maintain 0.15-0.3g through rotation, representing a deliberate design compromise: high enough to prevent the most extreme Belt-style adaptation, low enough to reduce life support energy costs relative to 1g rotation. After 25 generations, the Jovian orbital population averages 190 cm, 52% Earth bone density, and shows the intermediate cognitive and physical profile that the gravity range predicts \u2014 better 3D spatial reasoning than Earth baseline, less extreme than Belt, with physical fragility intermediate between Mars and Belt.<br><br>The Jovian tier system\u2019s gravity allocation is a quiet class marker: upper-tier habitats tend to maintain slightly higher rotation gravity (closer to 0.3g), which is slightly more physically demanding but also slightly more comfortable for the cross-factional travel that upper-tier residents do more frequently. Lower-tier habitats are typically at the 0.15g end of the range.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Jovian Adaptation &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioGravOuter(){
-  let h='<div class="sec-header">Outer System Profiles</div>';
+  const fc='#d4a040';
+  let h='<div class="tp-back" onclick="openLoreNode(\'bio-gravity\')">&#8592; Gravity & Physical Divergence</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Outer System Adaptation</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">Miranda &middot; Triton &middot; Titan &middot; Belt-adjacent profiles at the edge of human space</div></div>';
   const S=[
     {id:'bgo-phys',t:'Outer System Adaptation',b:`The outer system\u2019s small moons and habitats \u2014 Miranda at 0.008g, Triton at 0.08g, most Titan surface areas at 0.14g \u2014 produce the most extreme adaptations outside the Belt. Miranda\u2019s 20 billion residents (Belt-affiliated culture, extreme physical profile) have maintained a community in conditions where the physical adaptation is as extreme as any Belt habitat: average 205 cm height, 30% Earth bone density, effectively identical gravity tolerance limits to the most extreme Belt populations. The social connection to Belt culture is not coincidental \u2014 Miranda recruited heavily from Belt habitats in its initial settlement and has maintained Belt cultural affiliation through the centuries since.<br><br>Venna Rossi\u2019s profile as an Io-raised Jovian: Io at 0.18g produces adaptation intermediate between Belt and standard Jovian orbital. At 195 cm and approximately 50% Earth bone density, she is physically limited to the Jupiter system for practical travel without significant medical preparation.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Outer System Adaptation &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioRadiation(){
-  let h='<div class="sec-header">Radiation Adaptation</div>';
-  h+='<div style="font-size:13px;opacity:.45;margin-bottom:16px;font-style:italic">The background dose is everywhere. The accumulated lifetime dose shapes what environments are survivable. Jupiter\u2019s radiation belt is the most dangerous inhabited region in human space.</div>';
+  const fc='#e05c3a';
+  let h='<div class="tp-back" onclick="openLoreNode(\'biology\')">&#8592; Healthcare & Biology</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Radiation & Health</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">The background dose is everywhere &middot; Jupiter&#8217;s belt &middot; cumulative exposure &middot; pharmaceutical management</div></div>';
   const S=[
     {id:'rad-general',t:'Radiation Environment',b:`Radiation is the second major environmental pressure shaping human biology in space (after gravity). The solar wind, galactic cosmic rays, and Jupiter\u2019s trapped radiation belt expose space-dwelling humans to cumulative doses that Earth\u2019s magnetic field largely prevents. In practical terms, Belt residents accumulate lifetime doses that Earth medicine would consider medically significant; Io\u2019s radiation environment is the most extreme of any inhabited body \u2014 residents rotate through frequent medical monitoring and maintain aggressive pharmaceutical prophylaxis against radiation-induced cellular damage.<br><br>After 25 generations, populations in high-radiation environments show measurable changes in DNA repair enzyme efficiency \u2014 not immunity, but enhanced repair response that reduces the per-dose cellular damage rate relative to first-generation immigrants. This is not sufficient protection by itself; pharmaceutical and environmental shielding remain necessary. But it has shifted the distribution of radiation tolerance meaningfully across high-radiation populations, and the health implications of long-duration Jupiter-system residence for Belt or Martian immigrants (who lack these adaptations) is one of the Jupiter system\u2019s least-discussed public health issues.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Radiation & Health &#8212; Sol 2990 CE</div>';
   return h;
 }
 
 function bioCognitive(){
-  let h='<div class="sec-header">Cognitive Differences</div>';
-  h+='<div style="font-size:13px;opacity:.45;margin-bottom:16px;font-style:italic">The mind adapts to the environment it develops in. Belt children navigate 3D space the way Earth children navigate roads. This produces measurable differences.</div>';
+  const fc='#6ab8c8';
+  let h='<div class="tp-back" onclick="openLoreNode(\'biology\')">&#8592; Healthcare & Biology</div>';
+  h+='<div style="border-left:3px solid '+fc+';padding-left:14px;margin-bottom:14px;">';
+  h+='<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+fc+';letter-spacing:.04em;margin-bottom:4px;">Cognitive & Sensory Adaptation</div>';
+  h+='<div style="font-size:12px;letter-spacing:.18em;opacity:.45;text-transform:uppercase;">Belt children navigate 3D space the way Earth children navigate roads &middot; measurable differences &middot; contested implications</div></div>';
   const S=[
     {id:'cog-grav',t:'Gravity and Cognition',b:`Cognitive differences between gravity-adapted populations are real, measurable, and culturally significant. Belt-native populations show exceptional 3D spatial reasoning \u2014 the intuitive ability to calculate trajectories, navigate complex 3D environments, and manipulate objects in zero-g conditions \u2014 that consistently exceeds any other population on standardised assessments. This is a developmental effect: Belt children navigate complex 3D spaces from infancy, developing neural architecture for spatial processing that planetary children simply do not develop.<br><br>Martian populations show enhanced pattern recognition and temporal reasoning \u2014 the cognitive demands of agricultural management (reading seasonal patterns, managing multi-year terraforming trends, coordinating large-scale water management) have influenced the cognitive profile of populations engaged in these activities across generations. These are cultural-cognitive effects as much as purely environmental ones; they are real in the sense that they show up in assessments, and their implications are contested in the same way that any population-level cognitive difference is contested.`},
     {id:'cog-prejudice',t:'Cognitive Prejudice',b:`The existence of measurable cognitive differences between populations creates predictable prejudice dynamics. Belters are stereotyped as fragile and physically limited (accurate, out of context) but also as impulsive or unsophisticated (not accurate, attributable to the social context of Belt populations in inner-system spaces where their environmental competence is invisible). Martians are stereotyped as agricultural and uncreative (not accurate; the largest academic publishing sector outside Jupiter is in New Bradbury). Earth-baseline individuals are stereotyped by outer system populations as physically rigid and spatially incompetent (partially accurate for the specific cognitive domains where environmental adaptation produces measurable differences).<br><br>All of these stereotypes circulate in a context where the actual differences are real but narrow and context-specific, and where the stereotypes are used to justify differential access to employment, housing, and political representation in ways that the Belt Confederation\u2019s anti-discrimination framework and the Jovian Republic\u2019s equality provisions nominally prohibit and practically underenforce.`},
   ];
   S.forEach(s=>{h+=`<div class="mil-card" id="${s.id}"><div class="mil-head" onclick="toggleMil('${s.id}')"><div class="mil-name">${s.t}</div><span class="hist-chev">&#9658;</span></div><div class="mil-body" style="display:none"><div class="fac-sec-text" style="line-height:1.7">${s.b}</div></div></div>`;});
+  h+='<div class="ph-footer" style="margin-top:14px;">Cognitive & Sensory Adaptation &#8212; Sol 2990 CE</div>';
   return h;
 }
 
